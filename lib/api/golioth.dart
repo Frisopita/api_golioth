@@ -1,14 +1,13 @@
 // To parse this JSON data, do
 //
-//     final welcome = welcomeFromJson(jsonString);
+//     final golioth = goliothFromJson(jsonString);
 
 import 'dart:convert';
+Golioth goliothFromJson(String str) => Golioth.fromJson(json.decode(str));
+String goliothToJson(Golioth data) => json.encode(data.toJson());
 
-Welcome welcomeFromJson(String str) => Welcome.fromJson(json.decode(str));
 
-String welcomeToJson(Welcome data) => json.encode(data.toJson());
-
-class Welcome {
+class Golioth {
     final String swagger;
     final Info info;
     final List<Tag> tags;
@@ -22,7 +21,7 @@ class Welcome {
     final List<Security> security;
     final ExternalDocs externalDocs;
 
-    Welcome({
+    Golioth({
         required this.swagger,
         required this.info,
         required this.tags,
@@ -37,36 +36,7 @@ class Welcome {
         required this.externalDocs,
     });
 
-    Welcome copyWith({
-        String? swagger,
-        Info? info,
-        List<Tag>? tags,
-        String? host,
-        List<String>? schemes,
-        List<String>? consumes,
-        List<String>? produces,
-        Paths? paths,
-        Definitions? definitions,
-        SecurityDefinitions? securityDefinitions,
-        List<Security>? security,
-        ExternalDocs? externalDocs,
-    }) => 
-        Welcome(
-            swagger: swagger ?? this.swagger,
-            info: info ?? this.info,
-            tags: tags ?? this.tags,
-            host: host ?? this.host,
-            schemes: schemes ?? this.schemes,
-            consumes: consumes ?? this.consumes,
-            produces: produces ?? this.produces,
-            paths: paths ?? this.paths,
-            definitions: definitions ?? this.definitions,
-            securityDefinitions: securityDefinitions ?? this.securityDefinitions,
-            security: security ?? this.security,
-            externalDocs: externalDocs ?? this.externalDocs,
-        );
-
-    factory Welcome.fromJson(Map<String, dynamic> json) => Welcome(
+    factory Golioth.fromJson(Map<String, dynamic> json) => Golioth(
         swagger: json["swagger"],
         info: Info.fromJson(json["info"]),
         tags: List<Tag>.from(json["tags"].map((x) => Tag.fromJson(x))),
@@ -428,337 +398,6 @@ class Definitions {
         required this.rpcStatus,
     });
 
-    Definitions copyWith({
-        ComgoliothTag? comgoliothTag,
-        GoliothApiKey? goliothApiKey,
-        GoliothApiKeyType? goliothApiKeyType,
-        GoliothApiKeyUpdate? goliothApiKeyUpdate,
-        GoliothAccountQuota? goliothAccountQuota,
-        GoliothArtifact? goliothArtifact,
-        GoliothArtifactUpdate? goliothArtifactUpdate,
-        GoliothBlueprint? goliothBlueprint,
-        GoliothBlueprintUpdateClass? goliothBlueprintUpdate,
-        GoliothBoard? goliothBoard,
-        GoliothCertificate? goliothCertificate,
-        GoliothCertificateContent? goliothCertificateContent,
-        GoliothApiKeyType? goliothCloudEventType,
-        GoliothConditionalMap? goliothConditionalMap,
-        GoliothCreateApiKeyRequest? goliothCreateApiKeyRequest,
-        GoliothCreateApiKeyResponseClass? goliothCreateApiKeyResponse,
-        GoliothCreateArtifactRequest? goliothCreateArtifactRequest,
-        GoliothCreateApiKeyResponseClass? goliothCreateArtifactResponse,
-        GoliothBlueprintUpdateClass? goliothCreateBlueprintRequest,
-        GoliothCreateApiKeyResponseClass? goliothCreateBlueprintResponse,
-        GoliothCreateCertificateRequest? goliothCreateCertificateRequest,
-        GoliothCreateApiKeyResponseClass? goliothCreateCertificateResponse,
-        GoliothCreateCheckoutSessionRequest? goliothCreateCheckoutSessionRequest,
-        GoliothCreateCResponse? goliothCreateCheckoutSessionResponse,
-        GoliothCreateCredentialRequest? goliothCreateCredentialRequest,
-        GoliothCreateApiKeyResponseClass? goliothCreateCredentialResponse,
-        GoliothCreateCustomerPortalRequest? goliothCreateCustomerPortalRequest,
-        GoliothCreateCResponse? goliothCreateCustomerPortalResponse,
-        GoliothCreateDeviceRequest? goliothCreateDeviceRequest,
-        GoliothCreateApiKeyResponseClass? goliothCreateDeviceResponse,
-        GoliothCreateIntegrationRequest? goliothCreateIntegrationRequest,
-        GoliothCreateApiKeyResponseClass? goliothCreateIntegrationResponse,
-        GoliothCreateOrganizationRequestClass? goliothCreateOrganizationRequest,
-        GoliothCreateApiKeyResponseClass? goliothCreateOrganizationResponse,
-        GoliothCreateProjectRequest? goliothCreateProjectRequest,
-        GoliothCreateApiKeyResponseClass? goliothCreateProjectResponse,
-        GoliothCreateReleaseRequest? goliothCreateReleaseRequest,
-        GoliothCreateApiKeyResponseClass? goliothCreateReleaseResponse,
-        GoliothCreateSettingRequest? goliothCreateSettingRequest,
-        GoliothCreateApiKeyResponseClass? goliothCreateSettingResponse,
-        GoliothCreateTagRequest? goliothCreateTagRequest,
-        GoliothCreateApiKeyResponseClass? goliothCreateTagResponse,
-        GoliothCredential? goliothCredential,
-        GoliothApiKeyType? goliothCredentialType,
-        GoliothArtifactUpdate? goliothDeleteApiKeyResponse,
-        GoliothArtifactUpdate? goliothDeleteArtifactResponse,
-        GoliothArtifactUpdate? goliothDeleteBlueprintResponse,
-        GoliothArtifactUpdate? goliothDeleteCertificateResponse,
-        GoliothArtifactUpdate? goliothDeleteCredentialResponse,
-        GoliothArtifactUpdate? goliothDeleteDeviceResponse,
-        GoliothArtifactUpdate? goliothDeleteDeviceStateResponse,
-        GoliothArtifactUpdate? goliothDeleteIntegrationResponse,
-        GoliothArtifactUpdate? goliothDeletePolicyResponse,
-        GoliothArtifactUpdate? goliothDeleteProjectResponse,
-        GoliothArtifactUpdate? goliothDeleteReleaseResponse,
-        GoliothArtifactUpdate? goliothDeleteSettingResponse,
-        GoliothArtifactUpdate? goliothDeleteTagResponse,
-        GoliothDevice? goliothDevice,
-        GoliothDeviceActivityLog? goliothDeviceActivityLog,
-        GoliothDeviceLogEntry? goliothDeviceLogEntry,
-        GoliothApiKeyType? goliothDeviceLogLevel,
-        GoliothApiKeyType? goliothDeviceLogType,
-        GoliothDeviceMetadata? goliothDeviceMetadata,
-        GoliothDeviceStreamQuery? goliothDeviceStreamQuery,
-        GoliothDeviceUpdate? goliothDeviceUpdate,
-        GoliothEventType? goliothEventType,
-        GoliothFirmwareLogEntry? goliothFirmwareLogEntry,
-        GoliothCreateApiKeyResponseClass? goliothGetArtifactResponse,
-        GoliothGetAvailablePlansResponseClass? goliothGetAvailablePlansResponse,
-        GoliothCreateApiKeyResponseClass? goliothGetBlueprintResponse,
-        GoliothCreateApiKeyResponseClass? goliothGetBoardsResponse,
-        GoliothCreateApiKeyResponseClass? goliothGetCertificateResponse,
-        GoliothCreateApiKeyResponseClass? goliothGetDeviceResponse,
-        GoliothDeviceStateResponse? goliothGetDeviceStateResponse,
-        GoliothGetDeviceStreamRequest? goliothGetDeviceStreamRequest,
-        GoliothGetStreamResponse? goliothGetDeviceStreamResponse,
-        GoliothCreateApiKeyResponseClass? goliothGetIntegrationResponse,
-        GoliothGetLatestDeviceActivityLogsResponseClass? goliothGetLatestDeviceActivityLogsResponse,
-        GoliothGetLatestDeviceActivityLogsResponseClass? goliothGetLogsResponse,
-        GoliothCreateApiKeyResponseClass? goliothGetOrganizationResponse,
-        GoliothCreateApiKeyResponseClass? goliothGetPolicyResponse,
-        GoliothCreateApiKeyResponseClass? goliothGetProjectResponse,
-        GoliothGetProjectStreamRequest? goliothGetProjectStreamRequest,
-        GoliothGetStreamResponse? goliothGetProjectStreamResponse,
-        GoliothCreateApiKeyResponseClass? goliothGetQuotaResponse,
-        GoliothCreateApiKeyResponseClass? goliothGetReleaseResponse,
-        GoliothGetSettingResponseClass? goliothGetSettingResponse,
-        GoliothCreateApiKeyResponseClass? goliothGetTagResponse,
-        GoliothIntegration? goliothIntegration,
-        GoliothIntegrationType? goliothIntegrationType,
-        GoliothIntegrationTypeAttribute? goliothIntegrationTypeAttribute,
-        GoliothIntegrationUpdate? goliothIntegrationUpdate,
-        GoliothArtifactUpdate? goliothIntegrationValidationResponse,
-        GoliothInviteUserRequest? goliothInviteUserRequest,
-        GoliothCreateApiKeyResponseClass? goliothInviteUserResponse,
-        GoliothGetLatestDeviceActivityLogsResponseClass? goliothListApiKeyResponse,
-        GoliothGetSettingResponseClass? goliothListAllowedSettingsDataTypesResponse,
-        GoliothGetLatestDeviceActivityLogsResponseClass? goliothListArtifactResponse,
-        GoliothGetLatestDeviceActivityLogsResponseClass? goliothListBlueprintResponse,
-        GoliothGetSettingResponseClass? goliothListBoardsResponse,
-        GoliothGetLatestDeviceActivityLogsResponseClass? goliothListCertificateResponse,
-        GoliothGetAvailablePlansResponseClass? goliothListCredentialResponse,
-        GoliothGetLatestDeviceActivityLogsResponseClass? goliothListDeviceResponse,
-        GoliothGetLatestDeviceActivityLogsResponseClass? goliothListEventTypesResponse,
-        GoliothGetLatestDeviceActivityLogsResponseClass? goliothListFirmwareLogsResponse,
-        GoliothGetLatestDeviceActivityLogsResponseClass? goliothListIntegrationResponse,
-        GoliothGetLatestDeviceActivityLogsResponseClass? goliothListIntegrationTypesResponse,
-        GoliothGetAvailablePlansResponseClass? goliothListOrganizationResponse,
-        GoliothGetAvailablePlansResponseClass? goliothListPermissionResponse,
-        GoliothGetLatestDeviceActivityLogsResponseClass? goliothListPolicyResponse,
-        GoliothGetAvailablePlansResponseClass? goliothListProjectResponse,
-        GoliothGetLatestDeviceActivityLogsResponseClass? goliothListReleaseResponse,
-        GoliothGetAvailablePlansResponseClass? goliothListRoleResponse,
-        GoliothGetSettingResponseClass? goliothListSettingResponse,
-        GoliothGetLatestDeviceActivityLogsResponseClass? goliothListTagResponse,
-        GoliothGetAvailablePlansResponseClass? goliothListUsersResponse,
-        GoliothCreateApiKeyResponseClass? goliothMoveProjectResponse,
-        GoliothOrganization? goliothOrganization,
-        GoliothCreateOrganizationRequestClass? goliothOrganizationUpdate,
-        GoliothArtifactUpdate? goliothPaymentWebhookResponse,
-        GoliothPermission? goliothPermission,
-        GoliothPlan? goliothPlan,
-        GoliothPolicy? goliothPolicy,
-        GoliothPolicyUpdate? goliothPolicyUpdate,
-        GoliothProject? goliothProject,
-        GoliothUpdate? goliothProjectUpdate,
-        GoliothProvisionData? goliothProvisionData,
-        GoliothProvisionDeviceRequest? goliothProvisionDeviceRequest,
-        GoliothCreateApiKeyResponseClass? goliothProvisionDeviceResponse,
-        GoliothQueryField? goliothQueryField,
-        GoliothQueryFilter? goliothQueryFilter,
-        GoliothQuota? goliothQuota,
-        GoliothQuotaPerType? goliothQuotaPerType,
-        GoliothRelease? goliothRelease,
-        GoliothReleaseUpdate? goliothReleaseUpdate,
-        GoliothRemoteProcedureCallRequest? goliothRemoteProcedureCallRequest,
-        GoliothRemoteProcedureCallResponse? goliothRemoteProcedureCallResponse,
-        GoliothRole? goliothRole,
-        GoliothSetting? goliothSetting,
-        GoliothSettingDataType? goliothSettingDataType,
-        GoliothSettingError? goliothSettingError,
-        GoliothSettingUpdate? goliothSettingUpdate,
-        GoliothSettingsStatus? goliothSettingsStatus,
-        GoliothSubscriptionItem? goliothSubscriptionItem,
-        GoliothUpdate? goliothTagUpdate,
-        GoliothTestIntegrationRequest? goliothTestIntegrationRequest,
-        GoliothTestIntegrationResponse? goliothTestIntegrationResponse,
-        GoliothCreateApiKeyResponseClass? goliothUpdateApiKeyResponse,
-        GoliothCreateApiKeyResponseClass? goliothUpdateArtifactResponse,
-        GoliothCreateApiKeyResponseClass? goliothUpdateBlueprintResponse,
-        GoliothCreateApiKeyResponseClass? goliothUpdateDeviceResponse,
-        GoliothDeviceStateResponse? goliothUpdateDeviceStateResponse,
-        GoliothCreateApiKeyResponseClass? goliothUpdateIntegrationResponse,
-        GoliothCreateApiKeyResponseClass? goliothUpdateOrganizationResponse,
-        GoliothCreateApiKeyResponseClass? goliothUpdatePolicyResponse,
-        GoliothCreateApiKeyResponseClass? goliothUpdateProjectResponse,
-        GoliothCreateApiKeyResponseClass? goliothUpdateReleaseResponse,
-        GoliothCreateApiKeyResponseClass? goliothUpdateSettingResponse,
-        GoliothCreateApiKeyResponseClass? goliothUpdateTagResponse,
-        GoliothUser? goliothUser,
-        ProtobufAny? protobufAny,
-        GoliothApiKeyType? protobufNullValue,
-        RpcStatus? rpcStatus,
-    }) => 
-        Definitions(
-            comgoliothTag: comgoliothTag ?? this.comgoliothTag,
-            goliothApiKey: goliothApiKey ?? this.goliothApiKey,
-            goliothApiKeyType: goliothApiKeyType ?? this.goliothApiKeyType,
-            goliothApiKeyUpdate: goliothApiKeyUpdate ?? this.goliothApiKeyUpdate,
-            goliothAccountQuota: goliothAccountQuota ?? this.goliothAccountQuota,
-            goliothArtifact: goliothArtifact ?? this.goliothArtifact,
-            goliothArtifactUpdate: goliothArtifactUpdate ?? this.goliothArtifactUpdate,
-            goliothBlueprint: goliothBlueprint ?? this.goliothBlueprint,
-            goliothBlueprintUpdate: goliothBlueprintUpdate ?? this.goliothBlueprintUpdate,
-            goliothBoard: goliothBoard ?? this.goliothBoard,
-            goliothCertificate: goliothCertificate ?? this.goliothCertificate,
-            goliothCertificateContent: goliothCertificateContent ?? this.goliothCertificateContent,
-            goliothCloudEventType: goliothCloudEventType ?? this.goliothCloudEventType,
-            goliothConditionalMap: goliothConditionalMap ?? this.goliothConditionalMap,
-            goliothCreateApiKeyRequest: goliothCreateApiKeyRequest ?? this.goliothCreateApiKeyRequest,
-            goliothCreateApiKeyResponse: goliothCreateApiKeyResponse ?? this.goliothCreateApiKeyResponse,
-            goliothCreateArtifactRequest: goliothCreateArtifactRequest ?? this.goliothCreateArtifactRequest,
-            goliothCreateArtifactResponse: goliothCreateArtifactResponse ?? this.goliothCreateArtifactResponse,
-            goliothCreateBlueprintRequest: goliothCreateBlueprintRequest ?? this.goliothCreateBlueprintRequest,
-            goliothCreateBlueprintResponse: goliothCreateBlueprintResponse ?? this.goliothCreateBlueprintResponse,
-            goliothCreateCertificateRequest: goliothCreateCertificateRequest ?? this.goliothCreateCertificateRequest,
-            goliothCreateCertificateResponse: goliothCreateCertificateResponse ?? this.goliothCreateCertificateResponse,
-            goliothCreateCheckoutSessionRequest: goliothCreateCheckoutSessionRequest ?? this.goliothCreateCheckoutSessionRequest,
-            goliothCreateCheckoutSessionResponse: goliothCreateCheckoutSessionResponse ?? this.goliothCreateCheckoutSessionResponse,
-            goliothCreateCredentialRequest: goliothCreateCredentialRequest ?? this.goliothCreateCredentialRequest,
-            goliothCreateCredentialResponse: goliothCreateCredentialResponse ?? this.goliothCreateCredentialResponse,
-            goliothCreateCustomerPortalRequest: goliothCreateCustomerPortalRequest ?? this.goliothCreateCustomerPortalRequest,
-            goliothCreateCustomerPortalResponse: goliothCreateCustomerPortalResponse ?? this.goliothCreateCustomerPortalResponse,
-            goliothCreateDeviceRequest: goliothCreateDeviceRequest ?? this.goliothCreateDeviceRequest,
-            goliothCreateDeviceResponse: goliothCreateDeviceResponse ?? this.goliothCreateDeviceResponse,
-            goliothCreateIntegrationRequest: goliothCreateIntegrationRequest ?? this.goliothCreateIntegrationRequest,
-            goliothCreateIntegrationResponse: goliothCreateIntegrationResponse ?? this.goliothCreateIntegrationResponse,
-            goliothCreateOrganizationRequest: goliothCreateOrganizationRequest ?? this.goliothCreateOrganizationRequest,
-            goliothCreateOrganizationResponse: goliothCreateOrganizationResponse ?? this.goliothCreateOrganizationResponse,
-            goliothCreateProjectRequest: goliothCreateProjectRequest ?? this.goliothCreateProjectRequest,
-            goliothCreateProjectResponse: goliothCreateProjectResponse ?? this.goliothCreateProjectResponse,
-            goliothCreateReleaseRequest: goliothCreateReleaseRequest ?? this.goliothCreateReleaseRequest,
-            goliothCreateReleaseResponse: goliothCreateReleaseResponse ?? this.goliothCreateReleaseResponse,
-            goliothCreateSettingRequest: goliothCreateSettingRequest ?? this.goliothCreateSettingRequest,
-            goliothCreateSettingResponse: goliothCreateSettingResponse ?? this.goliothCreateSettingResponse,
-            goliothCreateTagRequest: goliothCreateTagRequest ?? this.goliothCreateTagRequest,
-            goliothCreateTagResponse: goliothCreateTagResponse ?? this.goliothCreateTagResponse,
-            goliothCredential: goliothCredential ?? this.goliothCredential,
-            goliothCredentialType: goliothCredentialType ?? this.goliothCredentialType,
-            goliothDeleteApiKeyResponse: goliothDeleteApiKeyResponse ?? this.goliothDeleteApiKeyResponse,
-            goliothDeleteArtifactResponse: goliothDeleteArtifactResponse ?? this.goliothDeleteArtifactResponse,
-            goliothDeleteBlueprintResponse: goliothDeleteBlueprintResponse ?? this.goliothDeleteBlueprintResponse,
-            goliothDeleteCertificateResponse: goliothDeleteCertificateResponse ?? this.goliothDeleteCertificateResponse,
-            goliothDeleteCredentialResponse: goliothDeleteCredentialResponse ?? this.goliothDeleteCredentialResponse,
-            goliothDeleteDeviceResponse: goliothDeleteDeviceResponse ?? this.goliothDeleteDeviceResponse,
-            goliothDeleteDeviceStateResponse: goliothDeleteDeviceStateResponse ?? this.goliothDeleteDeviceStateResponse,
-            goliothDeleteIntegrationResponse: goliothDeleteIntegrationResponse ?? this.goliothDeleteIntegrationResponse,
-            goliothDeletePolicyResponse: goliothDeletePolicyResponse ?? this.goliothDeletePolicyResponse,
-            goliothDeleteProjectResponse: goliothDeleteProjectResponse ?? this.goliothDeleteProjectResponse,
-            goliothDeleteReleaseResponse: goliothDeleteReleaseResponse ?? this.goliothDeleteReleaseResponse,
-            goliothDeleteSettingResponse: goliothDeleteSettingResponse ?? this.goliothDeleteSettingResponse,
-            goliothDeleteTagResponse: goliothDeleteTagResponse ?? this.goliothDeleteTagResponse,
-            goliothDevice: goliothDevice ?? this.goliothDevice,
-            goliothDeviceActivityLog: goliothDeviceActivityLog ?? this.goliothDeviceActivityLog,
-            goliothDeviceLogEntry: goliothDeviceLogEntry ?? this.goliothDeviceLogEntry,
-            goliothDeviceLogLevel: goliothDeviceLogLevel ?? this.goliothDeviceLogLevel,
-            goliothDeviceLogType: goliothDeviceLogType ?? this.goliothDeviceLogType,
-            goliothDeviceMetadata: goliothDeviceMetadata ?? this.goliothDeviceMetadata,
-            goliothDeviceStreamQuery: goliothDeviceStreamQuery ?? this.goliothDeviceStreamQuery,
-            goliothDeviceUpdate: goliothDeviceUpdate ?? this.goliothDeviceUpdate,
-            goliothEventType: goliothEventType ?? this.goliothEventType,
-            goliothFirmwareLogEntry: goliothFirmwareLogEntry ?? this.goliothFirmwareLogEntry,
-            goliothGetArtifactResponse: goliothGetArtifactResponse ?? this.goliothGetArtifactResponse,
-            goliothGetAvailablePlansResponse: goliothGetAvailablePlansResponse ?? this.goliothGetAvailablePlansResponse,
-            goliothGetBlueprintResponse: goliothGetBlueprintResponse ?? this.goliothGetBlueprintResponse,
-            goliothGetBoardsResponse: goliothGetBoardsResponse ?? this.goliothGetBoardsResponse,
-            goliothGetCertificateResponse: goliothGetCertificateResponse ?? this.goliothGetCertificateResponse,
-            goliothGetDeviceResponse: goliothGetDeviceResponse ?? this.goliothGetDeviceResponse,
-            goliothGetDeviceStateResponse: goliothGetDeviceStateResponse ?? this.goliothGetDeviceStateResponse,
-            goliothGetDeviceStreamRequest: goliothGetDeviceStreamRequest ?? this.goliothGetDeviceStreamRequest,
-            goliothGetDeviceStreamResponse: goliothGetDeviceStreamResponse ?? this.goliothGetDeviceStreamResponse,
-            goliothGetIntegrationResponse: goliothGetIntegrationResponse ?? this.goliothGetIntegrationResponse,
-            goliothGetLatestDeviceActivityLogsResponse: goliothGetLatestDeviceActivityLogsResponse ?? this.goliothGetLatestDeviceActivityLogsResponse,
-            goliothGetLogsResponse: goliothGetLogsResponse ?? this.goliothGetLogsResponse,
-            goliothGetOrganizationResponse: goliothGetOrganizationResponse ?? this.goliothGetOrganizationResponse,
-            goliothGetPolicyResponse: goliothGetPolicyResponse ?? this.goliothGetPolicyResponse,
-            goliothGetProjectResponse: goliothGetProjectResponse ?? this.goliothGetProjectResponse,
-            goliothGetProjectStreamRequest: goliothGetProjectStreamRequest ?? this.goliothGetProjectStreamRequest,
-            goliothGetProjectStreamResponse: goliothGetProjectStreamResponse ?? this.goliothGetProjectStreamResponse,
-            goliothGetQuotaResponse: goliothGetQuotaResponse ?? this.goliothGetQuotaResponse,
-            goliothGetReleaseResponse: goliothGetReleaseResponse ?? this.goliothGetReleaseResponse,
-            goliothGetSettingResponse: goliothGetSettingResponse ?? this.goliothGetSettingResponse,
-            goliothGetTagResponse: goliothGetTagResponse ?? this.goliothGetTagResponse,
-            goliothIntegration: goliothIntegration ?? this.goliothIntegration,
-            goliothIntegrationType: goliothIntegrationType ?? this.goliothIntegrationType,
-            goliothIntegrationTypeAttribute: goliothIntegrationTypeAttribute ?? this.goliothIntegrationTypeAttribute,
-            goliothIntegrationUpdate: goliothIntegrationUpdate ?? this.goliothIntegrationUpdate,
-            goliothIntegrationValidationResponse: goliothIntegrationValidationResponse ?? this.goliothIntegrationValidationResponse,
-            goliothInviteUserRequest: goliothInviteUserRequest ?? this.goliothInviteUserRequest,
-            goliothInviteUserResponse: goliothInviteUserResponse ?? this.goliothInviteUserResponse,
-            goliothListApiKeyResponse: goliothListApiKeyResponse ?? this.goliothListApiKeyResponse,
-            goliothListAllowedSettingsDataTypesResponse: goliothListAllowedSettingsDataTypesResponse ?? this.goliothListAllowedSettingsDataTypesResponse,
-            goliothListArtifactResponse: goliothListArtifactResponse ?? this.goliothListArtifactResponse,
-            goliothListBlueprintResponse: goliothListBlueprintResponse ?? this.goliothListBlueprintResponse,
-            goliothListBoardsResponse: goliothListBoardsResponse ?? this.goliothListBoardsResponse,
-            goliothListCertificateResponse: goliothListCertificateResponse ?? this.goliothListCertificateResponse,
-            goliothListCredentialResponse: goliothListCredentialResponse ?? this.goliothListCredentialResponse,
-            goliothListDeviceResponse: goliothListDeviceResponse ?? this.goliothListDeviceResponse,
-            goliothListEventTypesResponse: goliothListEventTypesResponse ?? this.goliothListEventTypesResponse,
-            goliothListFirmwareLogsResponse: goliothListFirmwareLogsResponse ?? this.goliothListFirmwareLogsResponse,
-            goliothListIntegrationResponse: goliothListIntegrationResponse ?? this.goliothListIntegrationResponse,
-            goliothListIntegrationTypesResponse: goliothListIntegrationTypesResponse ?? this.goliothListIntegrationTypesResponse,
-            goliothListOrganizationResponse: goliothListOrganizationResponse ?? this.goliothListOrganizationResponse,
-            goliothListPermissionResponse: goliothListPermissionResponse ?? this.goliothListPermissionResponse,
-            goliothListPolicyResponse: goliothListPolicyResponse ?? this.goliothListPolicyResponse,
-            goliothListProjectResponse: goliothListProjectResponse ?? this.goliothListProjectResponse,
-            goliothListReleaseResponse: goliothListReleaseResponse ?? this.goliothListReleaseResponse,
-            goliothListRoleResponse: goliothListRoleResponse ?? this.goliothListRoleResponse,
-            goliothListSettingResponse: goliothListSettingResponse ?? this.goliothListSettingResponse,
-            goliothListTagResponse: goliothListTagResponse ?? this.goliothListTagResponse,
-            goliothListUsersResponse: goliothListUsersResponse ?? this.goliothListUsersResponse,
-            goliothMoveProjectResponse: goliothMoveProjectResponse ?? this.goliothMoveProjectResponse,
-            goliothOrganization: goliothOrganization ?? this.goliothOrganization,
-            goliothOrganizationUpdate: goliothOrganizationUpdate ?? this.goliothOrganizationUpdate,
-            goliothPaymentWebhookResponse: goliothPaymentWebhookResponse ?? this.goliothPaymentWebhookResponse,
-            goliothPermission: goliothPermission ?? this.goliothPermission,
-            goliothPlan: goliothPlan ?? this.goliothPlan,
-            goliothPolicy: goliothPolicy ?? this.goliothPolicy,
-            goliothPolicyUpdate: goliothPolicyUpdate ?? this.goliothPolicyUpdate,
-            goliothProject: goliothProject ?? this.goliothProject,
-            goliothProjectUpdate: goliothProjectUpdate ?? this.goliothProjectUpdate,
-            goliothProvisionData: goliothProvisionData ?? this.goliothProvisionData,
-            goliothProvisionDeviceRequest: goliothProvisionDeviceRequest ?? this.goliothProvisionDeviceRequest,
-            goliothProvisionDeviceResponse: goliothProvisionDeviceResponse ?? this.goliothProvisionDeviceResponse,
-            goliothQueryField: goliothQueryField ?? this.goliothQueryField,
-            goliothQueryFilter: goliothQueryFilter ?? this.goliothQueryFilter,
-            goliothQuota: goliothQuota ?? this.goliothQuota,
-            goliothQuotaPerType: goliothQuotaPerType ?? this.goliothQuotaPerType,
-            goliothRelease: goliothRelease ?? this.goliothRelease,
-            goliothReleaseUpdate: goliothReleaseUpdate ?? this.goliothReleaseUpdate,
-            goliothRemoteProcedureCallRequest: goliothRemoteProcedureCallRequest ?? this.goliothRemoteProcedureCallRequest,
-            goliothRemoteProcedureCallResponse: goliothRemoteProcedureCallResponse ?? this.goliothRemoteProcedureCallResponse,
-            goliothRole: goliothRole ?? this.goliothRole,
-            goliothSetting: goliothSetting ?? this.goliothSetting,
-            goliothSettingDataType: goliothSettingDataType ?? this.goliothSettingDataType,
-            goliothSettingError: goliothSettingError ?? this.goliothSettingError,
-            goliothSettingUpdate: goliothSettingUpdate ?? this.goliothSettingUpdate,
-            goliothSettingsStatus: goliothSettingsStatus ?? this.goliothSettingsStatus,
-            goliothSubscriptionItem: goliothSubscriptionItem ?? this.goliothSubscriptionItem,
-            goliothTagUpdate: goliothTagUpdate ?? this.goliothTagUpdate,
-            goliothTestIntegrationRequest: goliothTestIntegrationRequest ?? this.goliothTestIntegrationRequest,
-            goliothTestIntegrationResponse: goliothTestIntegrationResponse ?? this.goliothTestIntegrationResponse,
-            goliothUpdateApiKeyResponse: goliothUpdateApiKeyResponse ?? this.goliothUpdateApiKeyResponse,
-            goliothUpdateArtifactResponse: goliothUpdateArtifactResponse ?? this.goliothUpdateArtifactResponse,
-            goliothUpdateBlueprintResponse: goliothUpdateBlueprintResponse ?? this.goliothUpdateBlueprintResponse,
-            goliothUpdateDeviceResponse: goliothUpdateDeviceResponse ?? this.goliothUpdateDeviceResponse,
-            goliothUpdateDeviceStateResponse: goliothUpdateDeviceStateResponse ?? this.goliothUpdateDeviceStateResponse,
-            goliothUpdateIntegrationResponse: goliothUpdateIntegrationResponse ?? this.goliothUpdateIntegrationResponse,
-            goliothUpdateOrganizationResponse: goliothUpdateOrganizationResponse ?? this.goliothUpdateOrganizationResponse,
-            goliothUpdatePolicyResponse: goliothUpdatePolicyResponse ?? this.goliothUpdatePolicyResponse,
-            goliothUpdateProjectResponse: goliothUpdateProjectResponse ?? this.goliothUpdateProjectResponse,
-            goliothUpdateReleaseResponse: goliothUpdateReleaseResponse ?? this.goliothUpdateReleaseResponse,
-            goliothUpdateSettingResponse: goliothUpdateSettingResponse ?? this.goliothUpdateSettingResponse,
-            goliothUpdateTagResponse: goliothUpdateTagResponse ?? this.goliothUpdateTagResponse,
-            goliothUser: goliothUser ?? this.goliothUser,
-            protobufAny: protobufAny ?? this.protobufAny,
-            protobufNullValue: protobufNullValue ?? this.protobufNullValue,
-            rpcStatus: rpcStatus ?? this.rpcStatus,
-        );
-
     factory Definitions.fromJson(Map<String, dynamic> json) => Definitions(
         comgoliothTag: ComgoliothTag.fromJson(json["comgoliothTag"]),
         goliothApiKey: GoliothApiKey.fromJson(json["goliothAPIKey"]),
@@ -1101,15 +740,6 @@ class ComgoliothTag {
         required this.properties,
     });
 
-    ComgoliothTag copyWith({
-        GoliothArtifactUpdateType? type,
-        ComgoliothTagProperties? properties,
-    }) => 
-        ComgoliothTag(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory ComgoliothTag.fromJson(Map<String, dynamic> json) => ComgoliothTag(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: ComgoliothTagProperties.fromJson(json["properties"]),
@@ -1134,19 +764,6 @@ class ComgoliothTagProperties {
         required this.updatedAt,
     });
 
-    ComgoliothTagProperties copyWith({
-        GoliothArtifactUpdate? id,
-        GoliothArtifactUpdate? name,
-        CreatedAt? createdAt,
-        CreatedAt? updatedAt,
-    }) => 
-        ComgoliothTagProperties(
-            id: id ?? this.id,
-            name: name ?? this.name,
-            createdAt: createdAt ?? this.createdAt,
-            updatedAt: updatedAt ?? this.updatedAt,
-        );
-
     factory ComgoliothTagProperties.fromJson(Map<String, dynamic> json) => ComgoliothTagProperties(
         id: GoliothArtifactUpdate.fromJson(json["id"]),
         name: GoliothArtifactUpdate.fromJson(json["name"]),
@@ -1170,15 +787,6 @@ class CreatedAt {
         required this.type,
         required this.format,
     });
-
-    CreatedAt copyWith({
-        CreatedAtType? type,
-        Format? format,
-    }) => 
-        CreatedAt(
-            type: type ?? this.type,
-            format: format ?? this.format,
-        );
 
     factory CreatedAt.fromJson(Map<String, dynamic> json) => CreatedAt(
         type: createdAtTypeValues.map[json["type"]]!,
@@ -1228,13 +836,6 @@ class GoliothArtifactUpdate {
         required this.type,
     });
 
-    GoliothArtifactUpdate copyWith({
-        GoliothArtifactUpdateType? type,
-    }) => 
-        GoliothArtifactUpdate(
-            type: type ?? this.type,
-        );
-
     factory GoliothArtifactUpdate.fromJson(Map<String, dynamic> json) => GoliothArtifactUpdate(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
     );
@@ -1265,15 +866,6 @@ class GoliothAccountQuota {
         required this.properties,
     });
 
-    GoliothAccountQuota copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothAccountQuotaProperties? properties,
-    }) => 
-        GoliothAccountQuota(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory GoliothAccountQuota.fromJson(Map<String, dynamic> json) => GoliothAccountQuota(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: GoliothAccountQuotaProperties.fromJson(json["properties"]),
@@ -1298,19 +890,6 @@ class GoliothAccountQuotaProperties {
         required this.organizations,
     });
 
-    GoliothAccountQuotaProperties copyWith({
-        GoliothArtifactUpdate? tier,
-        TypeClass? account,
-        Organizations? projects,
-        Organizations? organizations,
-    }) => 
-        GoliothAccountQuotaProperties(
-            tier: tier ?? this.tier,
-            account: account ?? this.account,
-            projects: projects ?? this.projects,
-            organizations: organizations ?? this.organizations,
-        );
-
     factory GoliothAccountQuotaProperties.fromJson(Map<String, dynamic> json) => GoliothAccountQuotaProperties(
         tier: GoliothArtifactUpdate.fromJson(json["tier"]),
         account: TypeClass.fromJson(json["account"]),
@@ -1333,13 +912,6 @@ class TypeClass {
         required this.ref,
     });
 
-    TypeClass copyWith({
-        String? ref,
-    }) => 
-        TypeClass(
-            ref: ref ?? this.ref,
-        );
-
     factory TypeClass.fromJson(Map<String, dynamic> json) => TypeClass(
         ref: json["\u0024ref"],
     );
@@ -1357,15 +929,6 @@ class Organizations {
         required this.type,
         required this.additionalProperties,
     });
-
-    Organizations copyWith({
-        GoliothArtifactUpdateType? type,
-        TypeClass? additionalProperties,
-    }) => 
-        Organizations(
-            type: type ?? this.type,
-            additionalProperties: additionalProperties ?? this.additionalProperties,
-        );
 
     factory Organizations.fromJson(Map<String, dynamic> json) => Organizations(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
@@ -1386,15 +949,6 @@ class GoliothApiKey {
         required this.type,
         required this.properties,
     });
-
-    GoliothApiKey copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothApiKeyProperties? properties,
-    }) => 
-        GoliothApiKey(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
 
     factory GoliothApiKey.fromJson(Map<String, dynamic> json) => GoliothApiKey(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
@@ -1428,27 +982,6 @@ class GoliothApiKeyProperties {
         required this.keyTags,
     });
 
-    GoliothApiKeyProperties copyWith({
-        GoliothArtifactUpdate? id,
-        GoliothArtifactUpdate? key,
-        CreatedAt? createdAt,
-        TypeClass? type,
-        GoliothArtifactUpdate? secret,
-        GoliothArtifactUpdate? policyId,
-        KeyTags? roles,
-        KeyTags? keyTags,
-    }) => 
-        GoliothApiKeyProperties(
-            id: id ?? this.id,
-            key: key ?? this.key,
-            createdAt: createdAt ?? this.createdAt,
-            type: type ?? this.type,
-            secret: secret ?? this.secret,
-            policyId: policyId ?? this.policyId,
-            roles: roles ?? this.roles,
-            keyTags: keyTags ?? this.keyTags,
-        );
-
     factory GoliothApiKeyProperties.fromJson(Map<String, dynamic> json) => GoliothApiKeyProperties(
         id: GoliothArtifactUpdate.fromJson(json["id"]),
         key: GoliothArtifactUpdate.fromJson(json["key"]),
@@ -1481,15 +1014,6 @@ class KeyTags {
         required this.items,
     });
 
-    KeyTags copyWith({
-        CreatedAtType? type,
-        GoliothArtifactUpdate? items,
-    }) => 
-        KeyTags(
-            type: type ?? this.type,
-            items: items ?? this.items,
-        );
-
     factory KeyTags.fromJson(Map<String, dynamic> json) => KeyTags(
         type: createdAtTypeValues.map[json["type"]]!,
         items: GoliothArtifactUpdate.fromJson(json["items"]),
@@ -1513,19 +1037,6 @@ class GoliothApiKeyType {
         required this.goliothApiKeyTypeDefault,
         this.description,
     });
-
-    GoliothApiKeyType copyWith({
-        CreatedAtType? type,
-        List<String>? goliothApiKeyTypeEnum,
-        String? goliothApiKeyTypeDefault,
-        String? description,
-    }) => 
-        GoliothApiKeyType(
-            type: type ?? this.type,
-            goliothApiKeyTypeEnum: goliothApiKeyTypeEnum ?? this.goliothApiKeyTypeEnum,
-            goliothApiKeyTypeDefault: goliothApiKeyTypeDefault ?? this.goliothApiKeyTypeDefault,
-            description: description ?? this.description,
-        );
 
     factory GoliothApiKeyType.fromJson(Map<String, dynamic> json) => GoliothApiKeyType(
         type: createdAtTypeValues.map[json["type"]]!,
@@ -1551,15 +1062,6 @@ class GoliothApiKeyUpdate {
         required this.properties,
     });
 
-    GoliothApiKeyUpdate copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothApiKeyUpdateProperties? properties,
-    }) => 
-        GoliothApiKeyUpdate(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory GoliothApiKeyUpdate.fromJson(Map<String, dynamic> json) => GoliothApiKeyUpdate(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: GoliothApiKeyUpdateProperties.fromJson(json["properties"]),
@@ -1580,15 +1082,6 @@ class GoliothApiKeyUpdateProperties {
         required this.keyTags,
     });
 
-    GoliothApiKeyUpdateProperties copyWith({
-        TypeClass? type,
-        KeyTags? keyTags,
-    }) => 
-        GoliothApiKeyUpdateProperties(
-            type: type ?? this.type,
-            keyTags: keyTags ?? this.keyTags,
-        );
-
     factory GoliothApiKeyUpdateProperties.fromJson(Map<String, dynamic> json) => GoliothApiKeyUpdateProperties(
         type: TypeClass.fromJson(json["type"]),
         keyTags: KeyTags.fromJson(json["keyTags"]),
@@ -1608,15 +1101,6 @@ class GoliothArtifact {
         required this.type,
         required this.properties,
     });
-
-    GoliothArtifact copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothArtifactProperties? properties,
-    }) => 
-        GoliothArtifact(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
 
     factory GoliothArtifact.fromJson(Map<String, dynamic> json) => GoliothArtifact(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
@@ -1650,27 +1134,6 @@ class GoliothArtifactProperties {
         required this.size,
     });
 
-    GoliothArtifactProperties copyWith({
-        GoliothArtifactUpdate? id,
-        GoliothArtifactUpdate? version,
-        GoliothArtifactUpdate? package,
-        GoliothArtifactUpdate? blueprintId,
-        CreatedAt? createdAt,
-        CreatedAt? updatedAt,
-        GoliothArtifactUpdate? binaryInfo,
-        CreatedAt? size,
-    }) => 
-        GoliothArtifactProperties(
-            id: id ?? this.id,
-            version: version ?? this.version,
-            package: package ?? this.package,
-            blueprintId: blueprintId ?? this.blueprintId,
-            createdAt: createdAt ?? this.createdAt,
-            updatedAt: updatedAt ?? this.updatedAt,
-            binaryInfo: binaryInfo ?? this.binaryInfo,
-            size: size ?? this.size,
-        );
-
     factory GoliothArtifactProperties.fromJson(Map<String, dynamic> json) => GoliothArtifactProperties(
         id: GoliothArtifactUpdate.fromJson(json["id"]),
         version: GoliothArtifactUpdate.fromJson(json["version"]),
@@ -1703,15 +1166,6 @@ class GoliothBlueprint {
         required this.properties,
     });
 
-    GoliothBlueprint copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothBlueprintProperties? properties,
-    }) => 
-        GoliothBlueprint(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory GoliothBlueprint.fromJson(Map<String, dynamic> json) => GoliothBlueprint(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: GoliothBlueprintProperties.fromJson(json["properties"]),
@@ -1739,23 +1193,6 @@ class GoliothBlueprintProperties {
         required this.createdAt,
         required this.updatedAt,
     });
-
-    GoliothBlueprintProperties copyWith({
-        GoliothArtifactUpdate? id,
-        GoliothArtifactUpdate? name,
-        GoliothArtifactUpdate? boardId,
-        GoliothArtifactUpdate? platform,
-        CreatedAt? createdAt,
-        CreatedAt? updatedAt,
-    }) => 
-        GoliothBlueprintProperties(
-            id: id ?? this.id,
-            name: name ?? this.name,
-            boardId: boardId ?? this.boardId,
-            platform: platform ?? this.platform,
-            createdAt: createdAt ?? this.createdAt,
-            updatedAt: updatedAt ?? this.updatedAt,
-        );
 
     factory GoliothBlueprintProperties.fromJson(Map<String, dynamic> json) => GoliothBlueprintProperties(
         id: GoliothArtifactUpdate.fromJson(json["id"]),
@@ -1785,15 +1222,6 @@ class GoliothBlueprintUpdateClass {
         required this.properties,
     });
 
-    GoliothBlueprintUpdateClass copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothBlueprintUpdateProperties? properties,
-    }) => 
-        GoliothBlueprintUpdateClass(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory GoliothBlueprintUpdateClass.fromJson(Map<String, dynamic> json) => GoliothBlueprintUpdateClass(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: GoliothBlueprintUpdateProperties.fromJson(json["properties"]),
@@ -1817,19 +1245,6 @@ class GoliothBlueprintUpdateProperties {
         required this.platform,
         this.projectId,
     });
-
-    GoliothBlueprintUpdateProperties copyWith({
-        GoliothArtifactUpdate? name,
-        GoliothArtifactUpdate? boardId,
-        GoliothArtifactUpdate? platform,
-        GoliothArtifactUpdate? projectId,
-    }) => 
-        GoliothBlueprintUpdateProperties(
-            name: name ?? this.name,
-            boardId: boardId ?? this.boardId,
-            platform: platform ?? this.platform,
-            projectId: projectId ?? this.projectId,
-        );
 
     factory GoliothBlueprintUpdateProperties.fromJson(Map<String, dynamic> json) => GoliothBlueprintUpdateProperties(
         name: GoliothArtifactUpdate.fromJson(json["name"]),
@@ -1855,15 +1270,6 @@ class GoliothBoard {
         required this.properties,
     });
 
-    GoliothBoard copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothBoardProperties? properties,
-    }) => 
-        GoliothBoard(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory GoliothBoard.fromJson(Map<String, dynamic> json) => GoliothBoard(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: GoliothBoardProperties.fromJson(json["properties"]),
@@ -1888,19 +1294,6 @@ class GoliothBoardProperties {
         required this.platforms,
     });
 
-    GoliothBoardProperties copyWith({
-        GoliothArtifactUpdate? id,
-        GoliothArtifactUpdate? name,
-        GoliothArtifactUpdate? arch,
-        KeyTags? platforms,
-    }) => 
-        GoliothBoardProperties(
-            id: id ?? this.id,
-            name: name ?? this.name,
-            arch: arch ?? this.arch,
-            platforms: platforms ?? this.platforms,
-        );
-
     factory GoliothBoardProperties.fromJson(Map<String, dynamic> json) => GoliothBoardProperties(
         id: GoliothArtifactUpdate.fromJson(json["id"]),
         name: GoliothArtifactUpdate.fromJson(json["name"]),
@@ -1924,15 +1317,6 @@ class GoliothCertificate {
         required this.type,
         required this.properties,
     });
-
-    GoliothCertificate copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothCertificateProperties? properties,
-    }) => 
-        GoliothCertificate(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
 
     factory GoliothCertificate.fromJson(Map<String, dynamic> json) => GoliothCertificate(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
@@ -1962,23 +1346,6 @@ class GoliothCertificateProperties {
         required this.createdAt,
     });
 
-    GoliothCertificateProperties copyWith({
-        GoliothArtifactUpdate? id,
-        GoliothArtifactUpdate? projectId,
-        GoliothArtifactUpdate? enabled,
-        GoliothArtifactUpdate? certType,
-        TypeClass? certificateContent,
-        CreatedAt? createdAt,
-    }) => 
-        GoliothCertificateProperties(
-            id: id ?? this.id,
-            projectId: projectId ?? this.projectId,
-            enabled: enabled ?? this.enabled,
-            certType: certType ?? this.certType,
-            certificateContent: certificateContent ?? this.certificateContent,
-            createdAt: createdAt ?? this.createdAt,
-        );
-
     factory GoliothCertificateProperties.fromJson(Map<String, dynamic> json) => GoliothCertificateProperties(
         id: GoliothArtifactUpdate.fromJson(json["id"]),
         projectId: GoliothArtifactUpdate.fromJson(json["projectId"]),
@@ -2006,15 +1373,6 @@ class GoliothCertificateContent {
         required this.type,
         required this.properties,
     });
-
-    GoliothCertificateContent copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothCertificateContentProperties? properties,
-    }) => 
-        GoliothCertificateContent(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
 
     factory GoliothCertificateContent.fromJson(Map<String, dynamic> json) => GoliothCertificateContent(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
@@ -2054,33 +1412,6 @@ class GoliothCertificateContentProperties {
         required this.keyUsages,
     });
 
-    GoliothCertificateContentProperties copyWith({
-        CreatedAt? signature,
-        GoliothArtifactUpdate? signatureAlgorithm,
-        GoliothArtifactUpdate? publicKeyAlgorithm,
-        CreatedAt? publicKey,
-        CreatedAt? version,
-        GoliothArtifactUpdate? serialNumber,
-        GoliothArtifactUpdate? issuer,
-        GoliothArtifactUpdate? subject,
-        CreatedAt? notBefore,
-        CreatedAt? notAfter,
-        KeyTags? keyUsages,
-    }) => 
-        GoliothCertificateContentProperties(
-            signature: signature ?? this.signature,
-            signatureAlgorithm: signatureAlgorithm ?? this.signatureAlgorithm,
-            publicKeyAlgorithm: publicKeyAlgorithm ?? this.publicKeyAlgorithm,
-            publicKey: publicKey ?? this.publicKey,
-            version: version ?? this.version,
-            serialNumber: serialNumber ?? this.serialNumber,
-            issuer: issuer ?? this.issuer,
-            subject: subject ?? this.subject,
-            notBefore: notBefore ?? this.notBefore,
-            notAfter: notAfter ?? this.notAfter,
-            keyUsages: keyUsages ?? this.keyUsages,
-        );
-
     factory GoliothCertificateContentProperties.fromJson(Map<String, dynamic> json) => GoliothCertificateContentProperties(
         signature: CreatedAt.fromJson(json["signature"]),
         signatureAlgorithm: GoliothArtifactUpdate.fromJson(json["signatureAlgorithm"]),
@@ -2119,15 +1450,6 @@ class GoliothConditionalMap {
         required this.properties,
     });
 
-    GoliothConditionalMap copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothConditionalMapProperties? properties,
-    }) => 
-        GoliothConditionalMap(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory GoliothConditionalMap.fromJson(Map<String, dynamic> json) => GoliothConditionalMap(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: GoliothConditionalMapProperties.fromJson(json["properties"]),
@@ -2146,13 +1468,6 @@ class GoliothConditionalMapProperties {
         required this.tags,
     });
 
-    GoliothConditionalMapProperties copyWith({
-        KeyTags? tags,
-    }) => 
-        GoliothConditionalMapProperties(
-            tags: tags ?? this.tags,
-        );
-
     factory GoliothConditionalMapProperties.fromJson(Map<String, dynamic> json) => GoliothConditionalMapProperties(
         tags: KeyTags.fromJson(json["tags"]),
     );
@@ -2170,15 +1485,6 @@ class GoliothCreateApiKeyRequest {
         required this.type,
         required this.properties,
     });
-
-    GoliothCreateApiKeyRequest copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothCreateApiKeyRequestProperties? properties,
-    }) => 
-        GoliothCreateApiKeyRequest(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
 
     factory GoliothCreateApiKeyRequest.fromJson(Map<String, dynamic> json) => GoliothCreateApiKeyRequest(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
@@ -2202,17 +1508,6 @@ class GoliothCreateApiKeyRequestProperties {
         required this.keyTags,
     });
 
-    GoliothCreateApiKeyRequestProperties copyWith({
-        GoliothArtifactUpdate? projectId,
-        TypeClass? type,
-        KeyTags? keyTags,
-    }) => 
-        GoliothCreateApiKeyRequestProperties(
-            projectId: projectId ?? this.projectId,
-            type: type ?? this.type,
-            keyTags: keyTags ?? this.keyTags,
-        );
-
     factory GoliothCreateApiKeyRequestProperties.fromJson(Map<String, dynamic> json) => GoliothCreateApiKeyRequestProperties(
         projectId: GoliothArtifactUpdate.fromJson(json["projectId"]),
         type: TypeClass.fromJson(json["type"]),
@@ -2235,15 +1530,6 @@ class GoliothCreateApiKeyResponseClass {
         required this.properties,
     });
 
-    GoliothCreateApiKeyResponseClass copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothCreateApiKeyResponseProperties? properties,
-    }) => 
-        GoliothCreateApiKeyResponseClass(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory GoliothCreateApiKeyResponseClass.fromJson(Map<String, dynamic> json) => GoliothCreateApiKeyResponseClass(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: GoliothCreateApiKeyResponseProperties.fromJson(json["properties"]),
@@ -2262,13 +1548,6 @@ class GoliothCreateApiKeyResponseProperties {
         required this.data,
     });
 
-    GoliothCreateApiKeyResponseProperties copyWith({
-        TypeClass? data,
-    }) => 
-        GoliothCreateApiKeyResponseProperties(
-            data: data ?? this.data,
-        );
-
     factory GoliothCreateApiKeyResponseProperties.fromJson(Map<String, dynamic> json) => GoliothCreateApiKeyResponseProperties(
         data: TypeClass.fromJson(json["data"]),
     );
@@ -2286,15 +1565,6 @@ class GoliothCreateArtifactRequest {
         required this.type,
         required this.properties,
     });
-
-    GoliothCreateArtifactRequest copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothCreateArtifactRequestProperties? properties,
-    }) => 
-        GoliothCreateArtifactRequest(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
 
     factory GoliothCreateArtifactRequest.fromJson(Map<String, dynamic> json) => GoliothCreateArtifactRequest(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
@@ -2322,21 +1592,6 @@ class GoliothCreateArtifactRequestProperties {
         required this.package,
     });
 
-    GoliothCreateArtifactRequestProperties copyWith({
-        GoliothArtifactUpdate? projectId,
-        CreatedAt? content,
-        GoliothArtifactUpdate? version,
-        GoliothArtifactUpdate? blueprintId,
-        GoliothArtifactUpdate? package,
-    }) => 
-        GoliothCreateArtifactRequestProperties(
-            projectId: projectId ?? this.projectId,
-            content: content ?? this.content,
-            version: version ?? this.version,
-            blueprintId: blueprintId ?? this.blueprintId,
-            package: package ?? this.package,
-        );
-
     factory GoliothCreateArtifactRequestProperties.fromJson(Map<String, dynamic> json) => GoliothCreateArtifactRequestProperties(
         projectId: GoliothArtifactUpdate.fromJson(json["projectId"]),
         content: CreatedAt.fromJson(json["content"]),
@@ -2363,15 +1618,6 @@ class GoliothCreateCertificateRequest {
         required this.properties,
     });
 
-    GoliothCreateCertificateRequest copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothCreateCertificateRequestProperties? properties,
-    }) => 
-        GoliothCreateCertificateRequest(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory GoliothCreateCertificateRequest.fromJson(Map<String, dynamic> json) => GoliothCreateCertificateRequest(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: GoliothCreateCertificateRequestProperties.fromJson(json["properties"]),
@@ -2393,17 +1639,6 @@ class GoliothCreateCertificateRequestProperties {
         required this.certFile,
         required this.certType,
     });
-
-    GoliothCreateCertificateRequestProperties copyWith({
-        GoliothArtifactUpdate? projectId,
-        CreatedAt? certFile,
-        GoliothArtifactUpdate? certType,
-    }) => 
-        GoliothCreateCertificateRequestProperties(
-            projectId: projectId ?? this.projectId,
-            certFile: certFile ?? this.certFile,
-            certType: certType ?? this.certType,
-        );
 
     factory GoliothCreateCertificateRequestProperties.fromJson(Map<String, dynamic> json) => GoliothCreateCertificateRequestProperties(
         projectId: GoliothArtifactUpdate.fromJson(json["projectId"]),
@@ -2427,15 +1662,6 @@ class GoliothCreateCheckoutSessionRequest {
         required this.properties,
     });
 
-    GoliothCreateCheckoutSessionRequest copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothCreateCheckoutSessionRequestProperties? properties,
-    }) => 
-        GoliothCreateCheckoutSessionRequest(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory GoliothCreateCheckoutSessionRequest.fromJson(Map<String, dynamic> json) => GoliothCreateCheckoutSessionRequest(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: GoliothCreateCheckoutSessionRequestProperties.fromJson(json["properties"]),
@@ -2457,17 +1683,6 @@ class GoliothCreateCheckoutSessionRequestProperties {
         required this.items,
         required this.callbackPath,
     });
-
-    GoliothCreateCheckoutSessionRequestProperties copyWith({
-        GoliothArtifactUpdate? organizationId,
-        Items? items,
-        GoliothArtifactUpdate? callbackPath,
-    }) => 
-        GoliothCreateCheckoutSessionRequestProperties(
-            organizationId: organizationId ?? this.organizationId,
-            items: items ?? this.items,
-            callbackPath: callbackPath ?? this.callbackPath,
-        );
 
     factory GoliothCreateCheckoutSessionRequestProperties.fromJson(Map<String, dynamic> json) => GoliothCreateCheckoutSessionRequestProperties(
         organizationId: GoliothArtifactUpdate.fromJson(json["organizationId"]),
@@ -2491,15 +1706,6 @@ class Items {
         required this.items,
     });
 
-    Items copyWith({
-        CreatedAtType? type,
-        TypeClass? items,
-    }) => 
-        Items(
-            type: type ?? this.type,
-            items: items ?? this.items,
-        );
-
     factory Items.fromJson(Map<String, dynamic> json) => Items(
         type: createdAtTypeValues.map[json["type"]]!,
         items: TypeClass.fromJson(json["items"]),
@@ -2520,15 +1726,6 @@ class GoliothCreateCResponse {
         required this.properties,
     });
 
-    GoliothCreateCResponse copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothCreateCheckoutSessionResponseProperties? properties,
-    }) => 
-        GoliothCreateCResponse(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory GoliothCreateCResponse.fromJson(Map<String, dynamic> json) => GoliothCreateCResponse(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: GoliothCreateCheckoutSessionResponseProperties.fromJson(json["properties"]),
@@ -2547,13 +1744,6 @@ class GoliothCreateCheckoutSessionResponseProperties {
         required this.url,
     });
 
-    GoliothCreateCheckoutSessionResponseProperties copyWith({
-        GoliothArtifactUpdate? url,
-    }) => 
-        GoliothCreateCheckoutSessionResponseProperties(
-            url: url ?? this.url,
-        );
-
     factory GoliothCreateCheckoutSessionResponseProperties.fromJson(Map<String, dynamic> json) => GoliothCreateCheckoutSessionResponseProperties(
         url: GoliothArtifactUpdate.fromJson(json["url"]),
     );
@@ -2571,15 +1761,6 @@ class GoliothCreateCredentialRequest {
         required this.type,
         required this.properties,
     });
-
-    GoliothCreateCredentialRequest copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothCreateCredentialRequestProperties? properties,
-    }) => 
-        GoliothCreateCredentialRequest(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
 
     factory GoliothCreateCredentialRequest.fromJson(Map<String, dynamic> json) => GoliothCreateCredentialRequest(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
@@ -2607,21 +1788,6 @@ class GoliothCreateCredentialRequestProperties {
         required this.preSharedKey,
     });
 
-    GoliothCreateCredentialRequestProperties copyWith({
-        GoliothArtifactUpdate? projectId,
-        GoliothArtifactUpdate? deviceId,
-        TypeClass? type,
-        GoliothArtifactUpdate? identity,
-        GoliothArtifactUpdate? preSharedKey,
-    }) => 
-        GoliothCreateCredentialRequestProperties(
-            projectId: projectId ?? this.projectId,
-            deviceId: deviceId ?? this.deviceId,
-            type: type ?? this.type,
-            identity: identity ?? this.identity,
-            preSharedKey: preSharedKey ?? this.preSharedKey,
-        );
-
     factory GoliothCreateCredentialRequestProperties.fromJson(Map<String, dynamic> json) => GoliothCreateCredentialRequestProperties(
         projectId: GoliothArtifactUpdate.fromJson(json["projectId"]),
         deviceId: GoliothArtifactUpdate.fromJson(json["deviceId"]),
@@ -2648,15 +1814,6 @@ class GoliothCreateCustomerPortalRequest {
         required this.properties,
     });
 
-    GoliothCreateCustomerPortalRequest copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothCreateCustomerPortalRequestProperties? properties,
-    }) => 
-        GoliothCreateCustomerPortalRequest(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory GoliothCreateCustomerPortalRequest.fromJson(Map<String, dynamic> json) => GoliothCreateCustomerPortalRequest(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: GoliothCreateCustomerPortalRequestProperties.fromJson(json["properties"]),
@@ -2677,15 +1834,6 @@ class GoliothCreateCustomerPortalRequestProperties {
         required this.callbackPath,
     });
 
-    GoliothCreateCustomerPortalRequestProperties copyWith({
-        GoliothArtifactUpdate? organizationId,
-        GoliothArtifactUpdate? callbackPath,
-    }) => 
-        GoliothCreateCustomerPortalRequestProperties(
-            organizationId: organizationId ?? this.organizationId,
-            callbackPath: callbackPath ?? this.callbackPath,
-        );
-
     factory GoliothCreateCustomerPortalRequestProperties.fromJson(Map<String, dynamic> json) => GoliothCreateCustomerPortalRequestProperties(
         organizationId: GoliothArtifactUpdate.fromJson(json["organizationId"]),
         callbackPath: GoliothArtifactUpdate.fromJson(json["callbackPath"]),
@@ -2705,15 +1853,6 @@ class GoliothCreateDeviceRequest {
         required this.type,
         required this.properties,
     });
-
-    GoliothCreateDeviceRequest copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothCreateDeviceRequestProperties? properties,
-    }) => 
-        GoliothCreateDeviceRequest(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
 
     factory GoliothCreateDeviceRequest.fromJson(Map<String, dynamic> json) => GoliothCreateDeviceRequest(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
@@ -2741,21 +1880,6 @@ class GoliothCreateDeviceRequestProperties {
         required this.blueprintId,
     });
 
-    GoliothCreateDeviceRequestProperties copyWith({
-        GoliothArtifactUpdate? projectId,
-        GoliothArtifactUpdate? name,
-        KeyTags? hardwareIds,
-        KeyTags? tagIds,
-        GoliothArtifactUpdate? blueprintId,
-    }) => 
-        GoliothCreateDeviceRequestProperties(
-            projectId: projectId ?? this.projectId,
-            name: name ?? this.name,
-            hardwareIds: hardwareIds ?? this.hardwareIds,
-            tagIds: tagIds ?? this.tagIds,
-            blueprintId: blueprintId ?? this.blueprintId,
-        );
-
     factory GoliothCreateDeviceRequestProperties.fromJson(Map<String, dynamic> json) => GoliothCreateDeviceRequestProperties(
         projectId: GoliothArtifactUpdate.fromJson(json["projectId"]),
         name: GoliothArtifactUpdate.fromJson(json["name"]),
@@ -2781,15 +1905,6 @@ class GoliothCreateIntegrationRequest {
         required this.type,
         required this.properties,
     });
-
-    GoliothCreateIntegrationRequest copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothCreateIntegrationRequestProperties? properties,
-    }) => 
-        GoliothCreateIntegrationRequest(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
 
     factory GoliothCreateIntegrationRequest.fromJson(Map<String, dynamic> json) => GoliothCreateIntegrationRequest(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
@@ -2819,23 +1934,6 @@ class GoliothCreateIntegrationRequestProperties {
         required this.eventTypes,
     });
 
-    GoliothCreateIntegrationRequestProperties copyWith({
-        GoliothArtifactUpdate? projectId,
-        GoliothArtifactUpdate? name,
-        GoliothArtifactUpdate? type,
-        GoliothArtifactUpdate? configuration,
-        GoliothArtifactUpdate? enabled,
-        Items? eventTypes,
-    }) => 
-        GoliothCreateIntegrationRequestProperties(
-            projectId: projectId ?? this.projectId,
-            name: name ?? this.name,
-            type: type ?? this.type,
-            configuration: configuration ?? this.configuration,
-            enabled: enabled ?? this.enabled,
-            eventTypes: eventTypes ?? this.eventTypes,
-        );
-
     factory GoliothCreateIntegrationRequestProperties.fromJson(Map<String, dynamic> json) => GoliothCreateIntegrationRequestProperties(
         projectId: GoliothArtifactUpdate.fromJson(json["projectId"]),
         name: GoliothArtifactUpdate.fromJson(json["name"]),
@@ -2864,15 +1962,6 @@ class GoliothCreateOrganizationRequestClass {
         required this.properties,
     });
 
-    GoliothCreateOrganizationRequestClass copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothCreateOrganizationRequestProperties? properties,
-    }) => 
-        GoliothCreateOrganizationRequestClass(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory GoliothCreateOrganizationRequestClass.fromJson(Map<String, dynamic> json) => GoliothCreateOrganizationRequestClass(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: GoliothCreateOrganizationRequestProperties.fromJson(json["properties"]),
@@ -2892,15 +1981,6 @@ class GoliothCreateOrganizationRequestProperties {
         required this.name,
         required this.website,
     });
-
-    GoliothCreateOrganizationRequestProperties copyWith({
-        GoliothArtifactUpdate? name,
-        GoliothArtifactUpdate? website,
-    }) => 
-        GoliothCreateOrganizationRequestProperties(
-            name: name ?? this.name,
-            website: website ?? this.website,
-        );
 
     factory GoliothCreateOrganizationRequestProperties.fromJson(Map<String, dynamic> json) => GoliothCreateOrganizationRequestProperties(
         name: GoliothArtifactUpdate.fromJson(json["name"]),
@@ -2922,15 +2002,6 @@ class GoliothCreateProjectRequest {
         required this.properties,
     });
 
-    GoliothCreateProjectRequest copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothCreateProjectRequestProperties? properties,
-    }) => 
-        GoliothCreateProjectRequest(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory GoliothCreateProjectRequest.fromJson(Map<String, dynamic> json) => GoliothCreateProjectRequest(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: GoliothCreateProjectRequestProperties.fromJson(json["properties"]),
@@ -2951,15 +2022,6 @@ class GoliothCreateProjectRequestProperties {
         required this.organizationId,
     });
 
-    GoliothCreateProjectRequestProperties copyWith({
-        GoliothArtifactUpdate? name,
-        GoliothArtifactUpdate? organizationId,
-    }) => 
-        GoliothCreateProjectRequestProperties(
-            name: name ?? this.name,
-            organizationId: organizationId ?? this.organizationId,
-        );
-
     factory GoliothCreateProjectRequestProperties.fromJson(Map<String, dynamic> json) => GoliothCreateProjectRequestProperties(
         name: GoliothArtifactUpdate.fromJson(json["name"]),
         organizationId: GoliothArtifactUpdate.fromJson(json["organizationId"]),
@@ -2979,15 +2041,6 @@ class GoliothCreateReleaseRequest {
         required this.type,
         required this.properties,
     });
-
-    GoliothCreateReleaseRequest copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothCreateReleaseRequestProperties? properties,
-    }) => 
-        GoliothCreateReleaseRequest(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
 
     factory GoliothCreateReleaseRequest.fromJson(Map<String, dynamic> json) => GoliothCreateReleaseRequest(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
@@ -3015,21 +2068,6 @@ class GoliothCreateReleaseRequestProperties {
         required this.rollout,
     });
 
-    GoliothCreateReleaseRequestProperties copyWith({
-        GoliothArtifactUpdate? projectId,
-        KeyTags? releaseTags,
-        KeyTags? deviceTagIds,
-        KeyTags? artifactIds,
-        GoliothArtifactUpdate? rollout,
-    }) => 
-        GoliothCreateReleaseRequestProperties(
-            projectId: projectId ?? this.projectId,
-            releaseTags: releaseTags ?? this.releaseTags,
-            deviceTagIds: deviceTagIds ?? this.deviceTagIds,
-            artifactIds: artifactIds ?? this.artifactIds,
-            rollout: rollout ?? this.rollout,
-        );
-
     factory GoliothCreateReleaseRequestProperties.fromJson(Map<String, dynamic> json) => GoliothCreateReleaseRequestProperties(
         projectId: GoliothArtifactUpdate.fromJson(json["projectId"]),
         releaseTags: KeyTags.fromJson(json["releaseTags"]),
@@ -3055,15 +2093,6 @@ class GoliothCreateSettingRequest {
         required this.type,
         required this.properties,
     });
-
-    GoliothCreateSettingRequest copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothCreateSettingRequestProperties? properties,
-    }) => 
-        GoliothCreateSettingRequest(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
 
     factory GoliothCreateSettingRequest.fromJson(Map<String, dynamic> json) => GoliothCreateSettingRequest(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
@@ -3093,23 +2122,6 @@ class GoliothCreateSettingRequestProperties {
         required this.deviceId,
     });
 
-    GoliothCreateSettingRequestProperties copyWith({
-        GoliothArtifactUpdate? projectId,
-        GoliothArtifactUpdate? key,
-        GoliothArtifactUpdate? dataType,
-        GoliothArtifactUpdate? value,
-        GoliothArtifactUpdate? blueprintId,
-        GoliothArtifactUpdate? deviceId,
-    }) => 
-        GoliothCreateSettingRequestProperties(
-            projectId: projectId ?? this.projectId,
-            key: key ?? this.key,
-            dataType: dataType ?? this.dataType,
-            value: value ?? this.value,
-            blueprintId: blueprintId ?? this.blueprintId,
-            deviceId: deviceId ?? this.deviceId,
-        );
-
     factory GoliothCreateSettingRequestProperties.fromJson(Map<String, dynamic> json) => GoliothCreateSettingRequestProperties(
         projectId: GoliothArtifactUpdate.fromJson(json["projectId"]),
         key: GoliothArtifactUpdate.fromJson(json["key"]),
@@ -3138,15 +2150,6 @@ class GoliothCreateTagRequest {
         required this.properties,
     });
 
-    GoliothCreateTagRequest copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothCreateTagRequestProperties? properties,
-    }) => 
-        GoliothCreateTagRequest(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory GoliothCreateTagRequest.fromJson(Map<String, dynamic> json) => GoliothCreateTagRequest(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: GoliothCreateTagRequestProperties.fromJson(json["properties"]),
@@ -3167,15 +2170,6 @@ class GoliothCreateTagRequestProperties {
         required this.name,
     });
 
-    GoliothCreateTagRequestProperties copyWith({
-        GoliothArtifactUpdate? projectId,
-        GoliothArtifactUpdate? name,
-    }) => 
-        GoliothCreateTagRequestProperties(
-            projectId: projectId ?? this.projectId,
-            name: name ?? this.name,
-        );
-
     factory GoliothCreateTagRequestProperties.fromJson(Map<String, dynamic> json) => GoliothCreateTagRequestProperties(
         projectId: GoliothArtifactUpdate.fromJson(json["projectId"]),
         name: GoliothArtifactUpdate.fromJson(json["name"]),
@@ -3195,15 +2189,6 @@ class GoliothCredential {
         required this.type,
         required this.properties,
     });
-
-    GoliothCredential copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothCredentialProperties? properties,
-    }) => 
-        GoliothCredential(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
 
     factory GoliothCredential.fromJson(Map<String, dynamic> json) => GoliothCredential(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
@@ -3231,21 +2216,6 @@ class GoliothCredentialProperties {
         required this.preSharedKey,
     });
 
-    GoliothCredentialProperties copyWith({
-        GoliothArtifactUpdate? id,
-        TypeClass? type,
-        GoliothArtifactUpdate? identity,
-        CreatedAt? createdAt,
-        GoliothArtifactUpdate? preSharedKey,
-    }) => 
-        GoliothCredentialProperties(
-            id: id ?? this.id,
-            type: type ?? this.type,
-            identity: identity ?? this.identity,
-            createdAt: createdAt ?? this.createdAt,
-            preSharedKey: preSharedKey ?? this.preSharedKey,
-        );
-
     factory GoliothCredentialProperties.fromJson(Map<String, dynamic> json) => GoliothCredentialProperties(
         id: GoliothArtifactUpdate.fromJson(json["id"]),
         type: TypeClass.fromJson(json["type"]),
@@ -3271,15 +2241,6 @@ class GoliothDevice {
         required this.type,
         required this.properties,
     });
-
-    GoliothDevice copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothDeviceProperties? properties,
-    }) => 
-        GoliothDevice(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
 
     factory GoliothDevice.fromJson(Map<String, dynamic> json) => GoliothDevice(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
@@ -3321,35 +2282,6 @@ class GoliothDeviceProperties {
         required this.enabled,
     });
 
-    GoliothDeviceProperties copyWith({
-        GoliothArtifactUpdate? id,
-        KeyTags? hardwareIds,
-        GoliothArtifactUpdate? name,
-        CreatedAt? createdAt,
-        CreatedAt? updatedAt,
-        KeyTags? tagIds,
-        GoliothArtifactUpdate? blueprintId,
-        GoliothArtifactUpdate? data,
-        CreatedAt? lastReport,
-        GoliothArtifactUpdate? status,
-        TypeClass? metadata,
-        GoliothArtifactUpdate? enabled,
-    }) => 
-        GoliothDeviceProperties(
-            id: id ?? this.id,
-            hardwareIds: hardwareIds ?? this.hardwareIds,
-            name: name ?? this.name,
-            createdAt: createdAt ?? this.createdAt,
-            updatedAt: updatedAt ?? this.updatedAt,
-            tagIds: tagIds ?? this.tagIds,
-            blueprintId: blueprintId ?? this.blueprintId,
-            data: data ?? this.data,
-            lastReport: lastReport ?? this.lastReport,
-            status: status ?? this.status,
-            metadata: metadata ?? this.metadata,
-            enabled: enabled ?? this.enabled,
-        );
-
     factory GoliothDeviceProperties.fromJson(Map<String, dynamic> json) => GoliothDeviceProperties(
         id: GoliothArtifactUpdate.fromJson(json["id"]),
         hardwareIds: KeyTags.fromJson(json["hardwareIds"]),
@@ -3390,15 +2322,6 @@ class GoliothDeviceActivityLog {
         required this.properties,
     });
 
-    GoliothDeviceActivityLog copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothDeviceActivityLogProperties? properties,
-    }) => 
-        GoliothDeviceActivityLog(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory GoliothDeviceActivityLog.fromJson(Map<String, dynamic> json) => GoliothDeviceActivityLog(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: GoliothDeviceActivityLogProperties.fromJson(json["properties"]),
@@ -3428,25 +2351,6 @@ class GoliothDeviceActivityLogProperties {
         required this.lastSeenOnline,
         required this.lastSeenOffline,
     });
-
-    GoliothDeviceActivityLogProperties copyWith({
-        GoliothArtifactUpdate? deviceId,
-        CreatedAt? lastReport,
-        GoliothArtifactUpdate? id,
-        GoliothArtifactUpdate? deviceName,
-        GoliothArtifactUpdate? status,
-        CreatedAt? lastSeenOnline,
-        CreatedAt? lastSeenOffline,
-    }) => 
-        GoliothDeviceActivityLogProperties(
-            deviceId: deviceId ?? this.deviceId,
-            lastReport: lastReport ?? this.lastReport,
-            id: id ?? this.id,
-            deviceName: deviceName ?? this.deviceName,
-            status: status ?? this.status,
-            lastSeenOnline: lastSeenOnline ?? this.lastSeenOnline,
-            lastSeenOffline: lastSeenOffline ?? this.lastSeenOffline,
-        );
 
     factory GoliothDeviceActivityLogProperties.fromJson(Map<String, dynamic> json) => GoliothDeviceActivityLogProperties(
         deviceId: GoliothArtifactUpdate.fromJson(json["deviceId"]),
@@ -3482,19 +2386,6 @@ class GoliothDeviceLogEntry {
         required this.description,
     });
 
-    GoliothDeviceLogEntry copyWith({
-        GoliothArtifactUpdateType? type,
-        Example? example,
-        GoliothDeviceLogEntryProperties? properties,
-        String? description,
-    }) => 
-        GoliothDeviceLogEntry(
-            type: type ?? this.type,
-            example: example ?? this.example,
-            properties: properties ?? this.properties,
-            description: description ?? this.description,
-        );
-
     factory GoliothDeviceLogEntry.fromJson(Map<String, dynamic> json) => GoliothDeviceLogEntry(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         example: Example.fromJson(json["example"]),
@@ -3529,25 +2420,6 @@ class Example {
         required this.timestamp,
     });
 
-    Example copyWith({
-        String? deviceId,
-        int? level,
-        String? message,
-        Metadata? metadata,
-        String? module,
-        String? projectId,
-        Timestamp? timestamp,
-    }) => 
-        Example(
-            deviceId: deviceId ?? this.deviceId,
-            level: level ?? this.level,
-            message: message ?? this.message,
-            metadata: metadata ?? this.metadata,
-            module: module ?? this.module,
-            projectId: projectId ?? this.projectId,
-            timestamp: timestamp ?? this.timestamp,
-        );
-
     factory Example.fromJson(Map<String, dynamic> json) => Example(
         deviceId: json["device_id"],
         level: json["level"],
@@ -3572,11 +2444,6 @@ class Example {
 class Metadata {
     Metadata();
 
-    Metadata copyWith({
-    }) => 
-        Metadata(
-        );
-
     factory Metadata.fromJson(Map<String, dynamic> json) => Metadata(
     );
 
@@ -3592,15 +2459,6 @@ class Timestamp {
         required this.nanos,
         required this.seconds,
     });
-
-    Timestamp copyWith({
-        int? nanos,
-        int? seconds,
-    }) => 
-        Timestamp(
-            nanos: nanos ?? this.nanos,
-            seconds: seconds ?? this.seconds,
-        );
 
     factory Timestamp.fromJson(Map<String, dynamic> json) => Timestamp(
         nanos: json["nanos"],
@@ -3634,27 +2492,6 @@ class GoliothDeviceLogEntryProperties {
         required this.deviceId,
     });
 
-    GoliothDeviceLogEntryProperties copyWith({
-        CreatedAt? timestamp,
-        TypeClass? type,
-        TypeClass? level,
-        GoliothArtifactUpdate? module,
-        GoliothArtifactUpdate? moduleId,
-        GoliothArtifactUpdate? message,
-        GoliothArtifactUpdate? metadata,
-        GoliothArtifactUpdate? deviceId,
-    }) => 
-        GoliothDeviceLogEntryProperties(
-            timestamp: timestamp ?? this.timestamp,
-            type: type ?? this.type,
-            level: level ?? this.level,
-            module: module ?? this.module,
-            moduleId: moduleId ?? this.moduleId,
-            message: message ?? this.message,
-            metadata: metadata ?? this.metadata,
-            deviceId: deviceId ?? this.deviceId,
-        );
-
     factory GoliothDeviceLogEntryProperties.fromJson(Map<String, dynamic> json) => GoliothDeviceLogEntryProperties(
         timestamp: CreatedAt.fromJson(json["timestamp"]),
         type: TypeClass.fromJson(json["type"]),
@@ -3687,15 +2524,6 @@ class GoliothDeviceMetadata {
         required this.properties,
     });
 
-    GoliothDeviceMetadata copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothDeviceMetadataProperties? properties,
-    }) => 
-        GoliothDeviceMetadata(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory GoliothDeviceMetadata.fromJson(Map<String, dynamic> json) => GoliothDeviceMetadata(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: GoliothDeviceMetadataProperties.fromJson(json["properties"]),
@@ -3723,23 +2551,6 @@ class GoliothDeviceMetadataProperties {
         required this.lastSeenOffline,
         required this.lastSettingsStatus,
     });
-
-    GoliothDeviceMetadataProperties copyWith({
-        GoliothArtifactUpdate? update,
-        GoliothArtifactUpdate? status,
-        CreatedAt? lastReport,
-        CreatedAt? lastSeenOnline,
-        CreatedAt? lastSeenOffline,
-        TypeClass? lastSettingsStatus,
-    }) => 
-        GoliothDeviceMetadataProperties(
-            update: update ?? this.update,
-            status: status ?? this.status,
-            lastReport: lastReport ?? this.lastReport,
-            lastSeenOnline: lastSeenOnline ?? this.lastSeenOnline,
-            lastSeenOffline: lastSeenOffline ?? this.lastSeenOffline,
-            lastSettingsStatus: lastSettingsStatus ?? this.lastSettingsStatus,
-        );
 
     factory GoliothDeviceMetadataProperties.fromJson(Map<String, dynamic> json) => GoliothDeviceMetadataProperties(
         update: GoliothArtifactUpdate.fromJson(json["update"]),
@@ -3769,15 +2580,6 @@ class GoliothDeviceStreamQuery {
         required this.properties,
     });
 
-    GoliothDeviceStreamQuery copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothDeviceStreamQueryProperties? properties,
-    }) => 
-        GoliothDeviceStreamQuery(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory GoliothDeviceStreamQuery.fromJson(Map<String, dynamic> json) => GoliothDeviceStreamQuery(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: GoliothDeviceStreamQueryProperties.fromJson(json["properties"]),
@@ -3800,17 +2602,6 @@ class GoliothDeviceStreamQueryProperties {
         required this.timeBucket,
     });
 
-    GoliothDeviceStreamQueryProperties copyWith({
-        Items? fields,
-        Items? filters,
-        GoliothArtifactUpdate? timeBucket,
-    }) => 
-        GoliothDeviceStreamQueryProperties(
-            fields: fields ?? this.fields,
-            filters: filters ?? this.filters,
-            timeBucket: timeBucket ?? this.timeBucket,
-        );
-
     factory GoliothDeviceStreamQueryProperties.fromJson(Map<String, dynamic> json) => GoliothDeviceStreamQueryProperties(
         fields: Items.fromJson(json["fields"]),
         filters: Items.fromJson(json["filters"]),
@@ -3832,15 +2623,6 @@ class GoliothDeviceUpdate {
         required this.type,
         required this.properties,
     });
-
-    GoliothDeviceUpdate copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothDeviceUpdateProperties? properties,
-    }) => 
-        GoliothDeviceUpdate(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
 
     factory GoliothDeviceUpdate.fromJson(Map<String, dynamic> json) => GoliothDeviceUpdate(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
@@ -3876,29 +2658,6 @@ class GoliothDeviceUpdateProperties {
         required this.enabled,
     });
 
-    GoliothDeviceUpdateProperties copyWith({
-        GoliothArtifactUpdate? name,
-        KeyTags? addHardwareId,
-        KeyTags? removeHardwareId,
-        KeyTags? hardwareIds,
-        KeyTags? addTagId,
-        KeyTags? removeTagId,
-        GoliothArtifactUpdate? blueprintId,
-        KeyTags? tagIds,
-        GoliothArtifactUpdate? enabled,
-    }) => 
-        GoliothDeviceUpdateProperties(
-            name: name ?? this.name,
-            addHardwareId: addHardwareId ?? this.addHardwareId,
-            removeHardwareId: removeHardwareId ?? this.removeHardwareId,
-            hardwareIds: hardwareIds ?? this.hardwareIds,
-            addTagId: addTagId ?? this.addTagId,
-            removeTagId: removeTagId ?? this.removeTagId,
-            blueprintId: blueprintId ?? this.blueprintId,
-            tagIds: tagIds ?? this.tagIds,
-            enabled: enabled ?? this.enabled,
-        );
-
     factory GoliothDeviceUpdateProperties.fromJson(Map<String, dynamic> json) => GoliothDeviceUpdateProperties(
         name: GoliothArtifactUpdate.fromJson(json["name"]),
         addHardwareId: KeyTags.fromJson(json["addHardwareId"]),
@@ -3933,15 +2692,6 @@ class GoliothEventType {
         required this.properties,
     });
 
-    GoliothEventType copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothEventTypeProperties? properties,
-    }) => 
-        GoliothEventType(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory GoliothEventType.fromJson(Map<String, dynamic> json) => GoliothEventType(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: GoliothEventTypeProperties.fromJson(json["properties"]),
@@ -3964,17 +2714,6 @@ class GoliothEventTypeProperties {
         required this.subject,
     });
 
-    GoliothEventTypeProperties copyWith({
-        GoliothArtifactUpdate? name,
-        GoliothArtifactUpdate? type,
-        GoliothArtifactUpdate? subject,
-    }) => 
-        GoliothEventTypeProperties(
-            name: name ?? this.name,
-            type: type ?? this.type,
-            subject: subject ?? this.subject,
-        );
-
     factory GoliothEventTypeProperties.fromJson(Map<String, dynamic> json) => GoliothEventTypeProperties(
         name: GoliothArtifactUpdate.fromJson(json["name"]),
         type: GoliothArtifactUpdate.fromJson(json["type"]),
@@ -3996,15 +2735,6 @@ class GoliothFirmwareLogEntry {
         required this.type,
         required this.properties,
     });
-
-    GoliothFirmwareLogEntry copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothFirmwareLogEntryProperties? properties,
-    }) => 
-        GoliothFirmwareLogEntry(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
 
     factory GoliothFirmwareLogEntry.fromJson(Map<String, dynamic> json) => GoliothFirmwareLogEntry(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
@@ -4040,29 +2770,6 @@ class GoliothFirmwareLogEntryProperties {
         required this.package,
     });
 
-    GoliothFirmwareLogEntryProperties copyWith({
-        CreatedAt? time,
-        GoliothArtifactUpdate? version,
-        GoliothArtifactUpdate? target,
-        GoliothArtifactUpdate? stateCode,
-        GoliothArtifactUpdate? state,
-        GoliothArtifactUpdate? reasonCode,
-        GoliothArtifactUpdate? reason,
-        GoliothArtifactUpdate? deviceId,
-        GoliothArtifactUpdate? package,
-    }) => 
-        GoliothFirmwareLogEntryProperties(
-            time: time ?? this.time,
-            version: version ?? this.version,
-            target: target ?? this.target,
-            stateCode: stateCode ?? this.stateCode,
-            state: state ?? this.state,
-            reasonCode: reasonCode ?? this.reasonCode,
-            reason: reason ?? this.reason,
-            deviceId: deviceId ?? this.deviceId,
-            package: package ?? this.package,
-        );
-
     factory GoliothFirmwareLogEntryProperties.fromJson(Map<String, dynamic> json) => GoliothFirmwareLogEntryProperties(
         time: CreatedAt.fromJson(json["time"]),
         version: GoliothArtifactUpdate.fromJson(json["version"]),
@@ -4097,15 +2804,6 @@ class GoliothGetAvailablePlansResponseClass {
         required this.properties,
     });
 
-    GoliothGetAvailablePlansResponseClass copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothGetAvailablePlansResponseProperties? properties,
-    }) => 
-        GoliothGetAvailablePlansResponseClass(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory GoliothGetAvailablePlansResponseClass.fromJson(Map<String, dynamic> json) => GoliothGetAvailablePlansResponseClass(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: GoliothGetAvailablePlansResponseProperties.fromJson(json["properties"]),
@@ -4123,13 +2821,6 @@ class GoliothGetAvailablePlansResponseProperties {
     GoliothGetAvailablePlansResponseProperties({
         required this.list,
     });
-
-    GoliothGetAvailablePlansResponseProperties copyWith({
-        Items? list,
-    }) => 
-        GoliothGetAvailablePlansResponseProperties(
-            list: list ?? this.list,
-        );
 
     factory GoliothGetAvailablePlansResponseProperties.fromJson(Map<String, dynamic> json) => GoliothGetAvailablePlansResponseProperties(
         list: Items.fromJson(json["list"]),
@@ -4149,15 +2840,6 @@ class GoliothDeviceStateResponse {
         required this.properties,
     });
 
-    GoliothDeviceStateResponse copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothGetDeviceStateResponseProperties? properties,
-    }) => 
-        GoliothDeviceStateResponse(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory GoliothDeviceStateResponse.fromJson(Map<String, dynamic> json) => GoliothDeviceStateResponse(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: GoliothGetDeviceStateResponseProperties.fromJson(json["properties"]),
@@ -4176,13 +2858,6 @@ class GoliothGetDeviceStateResponseProperties {
         required this.data,
     });
 
-    GoliothGetDeviceStateResponseProperties copyWith({
-        GoliothArtifactUpdate? data,
-    }) => 
-        GoliothGetDeviceStateResponseProperties(
-            data: data ?? this.data,
-        );
-
     factory GoliothGetDeviceStateResponseProperties.fromJson(Map<String, dynamic> json) => GoliothGetDeviceStateResponseProperties(
         data: GoliothArtifactUpdate.fromJson(json["data"]),
     );
@@ -4200,15 +2875,6 @@ class GoliothGetDeviceStreamRequest {
         required this.type,
         required this.properties,
     });
-
-    GoliothGetDeviceStreamRequest copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothGetDeviceStreamRequestProperties? properties,
-    }) => 
-        GoliothGetDeviceStreamRequest(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
 
     factory GoliothGetDeviceStreamRequest.fromJson(Map<String, dynamic> json) => GoliothGetDeviceStreamRequest(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
@@ -4244,29 +2910,6 @@ class GoliothGetDeviceStreamRequestProperties {
         required this.perPage,
     });
 
-    GoliothGetDeviceStreamRequestProperties copyWith({
-        GoliothArtifactUpdate? projectId,
-        GoliothArtifactUpdate? deviceId,
-        CreatedAt? start,
-        CreatedAt? end,
-        GoliothArtifactUpdate? interval,
-        GoliothArtifactUpdate? encodedQuery,
-        TypeClass? query,
-        CreatedAt? page,
-        CreatedAt? perPage,
-    }) => 
-        GoliothGetDeviceStreamRequestProperties(
-            projectId: projectId ?? this.projectId,
-            deviceId: deviceId ?? this.deviceId,
-            start: start ?? this.start,
-            end: end ?? this.end,
-            interval: interval ?? this.interval,
-            encodedQuery: encodedQuery ?? this.encodedQuery,
-            query: query ?? this.query,
-            page: page ?? this.page,
-            perPage: perPage ?? this.perPage,
-        );
-
     factory GoliothGetDeviceStreamRequestProperties.fromJson(Map<String, dynamic> json) => GoliothGetDeviceStreamRequestProperties(
         projectId: GoliothArtifactUpdate.fromJson(json["projectId"]),
         deviceId: GoliothArtifactUpdate.fromJson(json["deviceId"]),
@@ -4301,15 +2944,6 @@ class GoliothGetStreamResponse {
         required this.properties,
     });
 
-    GoliothGetStreamResponse copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothGetDeviceStreamResponseProperties? properties,
-    }) => 
-        GoliothGetStreamResponse(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory GoliothGetStreamResponse.fromJson(Map<String, dynamic> json) => GoliothGetStreamResponse(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: GoliothGetDeviceStreamResponseProperties.fromJson(json["properties"]),
@@ -4333,19 +2967,6 @@ class GoliothGetDeviceStreamResponseProperties {
         required this.perPage,
         required this.total,
     });
-
-    GoliothGetDeviceStreamResponseProperties copyWith({
-        KeyTags? list,
-        CreatedAt? page,
-        CreatedAt? perPage,
-        CreatedAt? total,
-    }) => 
-        GoliothGetDeviceStreamResponseProperties(
-            list: list ?? this.list,
-            page: page ?? this.page,
-            perPage: perPage ?? this.perPage,
-            total: total ?? this.total,
-        );
 
     factory GoliothGetDeviceStreamResponseProperties.fromJson(Map<String, dynamic> json) => GoliothGetDeviceStreamResponseProperties(
         list: KeyTags.fromJson(json["list"]),
@@ -4371,15 +2992,6 @@ class GoliothGetLatestDeviceActivityLogsResponseClass {
         required this.properties,
     });
 
-    GoliothGetLatestDeviceActivityLogsResponseClass copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothGetLatestDeviceActivityLogsResponseProperties? properties,
-    }) => 
-        GoliothGetLatestDeviceActivityLogsResponseClass(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory GoliothGetLatestDeviceActivityLogsResponseClass.fromJson(Map<String, dynamic> json) => GoliothGetLatestDeviceActivityLogsResponseClass(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: GoliothGetLatestDeviceActivityLogsResponseProperties.fromJson(json["properties"]),
@@ -4404,19 +3016,6 @@ class GoliothGetLatestDeviceActivityLogsResponseProperties {
         required this.total,
     });
 
-    GoliothGetLatestDeviceActivityLogsResponseProperties copyWith({
-        Items? list,
-        CreatedAt? page,
-        CreatedAt? perPage,
-        CreatedAt? total,
-    }) => 
-        GoliothGetLatestDeviceActivityLogsResponseProperties(
-            list: list ?? this.list,
-            page: page ?? this.page,
-            perPage: perPage ?? this.perPage,
-            total: total ?? this.total,
-        );
-
     factory GoliothGetLatestDeviceActivityLogsResponseProperties.fromJson(Map<String, dynamic> json) => GoliothGetLatestDeviceActivityLogsResponseProperties(
         list: Items.fromJson(json["list"]),
         page: CreatedAt.fromJson(json["page"]),
@@ -4440,15 +3039,6 @@ class GoliothGetProjectStreamRequest {
         required this.type,
         required this.properties,
     });
-
-    GoliothGetProjectStreamRequest copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothGetProjectStreamRequestProperties? properties,
-    }) => 
-        GoliothGetProjectStreamRequest(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
 
     factory GoliothGetProjectStreamRequest.fromJson(Map<String, dynamic> json) => GoliothGetProjectStreamRequest(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
@@ -4486,31 +3076,6 @@ class GoliothGetProjectStreamRequestProperties {
         required this.tags,
     });
 
-    GoliothGetProjectStreamRequestProperties copyWith({
-        GoliothArtifactUpdate? projectId,
-        CreatedAt? start,
-        CreatedAt? end,
-        GoliothArtifactUpdate? interval,
-        GoliothArtifactUpdate? encodedQuery,
-        TypeClass? query,
-        KeyTags? deviceId,
-        CreatedAt? page,
-        CreatedAt? perPage,
-        KeyTags? tags,
-    }) => 
-        GoliothGetProjectStreamRequestProperties(
-            projectId: projectId ?? this.projectId,
-            start: start ?? this.start,
-            end: end ?? this.end,
-            interval: interval ?? this.interval,
-            encodedQuery: encodedQuery ?? this.encodedQuery,
-            query: query ?? this.query,
-            deviceId: deviceId ?? this.deviceId,
-            page: page ?? this.page,
-            perPage: perPage ?? this.perPage,
-            tags: tags ?? this.tags,
-        );
-
     factory GoliothGetProjectStreamRequestProperties.fromJson(Map<String, dynamic> json) => GoliothGetProjectStreamRequestProperties(
         projectId: GoliothArtifactUpdate.fromJson(json["projectId"]),
         start: CreatedAt.fromJson(json["start"]),
@@ -4547,15 +3112,6 @@ class GoliothGetSettingResponseClass {
         required this.properties,
     });
 
-    GoliothGetSettingResponseClass copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothGetSettingResponseProperties? properties,
-    }) => 
-        GoliothGetSettingResponseClass(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory GoliothGetSettingResponseClass.fromJson(Map<String, dynamic> json) => GoliothGetSettingResponseClass(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: GoliothGetSettingResponseProperties.fromJson(json["properties"]),
@@ -4576,15 +3132,6 @@ class GoliothGetSettingResponseProperties {
         required this.total,
     });
 
-    GoliothGetSettingResponseProperties copyWith({
-        Items? list,
-        CreatedAt? total,
-    }) => 
-        GoliothGetSettingResponseProperties(
-            list: list ?? this.list,
-            total: total ?? this.total,
-        );
-
     factory GoliothGetSettingResponseProperties.fromJson(Map<String, dynamic> json) => GoliothGetSettingResponseProperties(
         list: Items.fromJson(json["list"]),
         total: CreatedAt.fromJson(json["total"]),
@@ -4604,15 +3151,6 @@ class GoliothIntegration {
         required this.type,
         required this.properties,
     });
-
-    GoliothIntegration copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothIntegrationProperties? properties,
-    }) => 
-        GoliothIntegration(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
 
     factory GoliothIntegration.fromJson(Map<String, dynamic> json) => GoliothIntegration(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
@@ -4646,27 +3184,6 @@ class GoliothIntegrationProperties {
         required this.eventTypes,
     });
 
-    GoliothIntegrationProperties copyWith({
-        GoliothArtifactUpdate? id,
-        GoliothArtifactUpdate? name,
-        GoliothArtifactUpdate? type,
-        CreatedAt? createdAt,
-        CreatedAt? updatedAt,
-        GoliothArtifactUpdate? configuration,
-        GoliothArtifactUpdate? enabled,
-        Items? eventTypes,
-    }) => 
-        GoliothIntegrationProperties(
-            id: id ?? this.id,
-            name: name ?? this.name,
-            type: type ?? this.type,
-            createdAt: createdAt ?? this.createdAt,
-            updatedAt: updatedAt ?? this.updatedAt,
-            configuration: configuration ?? this.configuration,
-            enabled: enabled ?? this.enabled,
-            eventTypes: eventTypes ?? this.eventTypes,
-        );
-
     factory GoliothIntegrationProperties.fromJson(Map<String, dynamic> json) => GoliothIntegrationProperties(
         id: GoliothArtifactUpdate.fromJson(json["id"]),
         name: GoliothArtifactUpdate.fromJson(json["name"]),
@@ -4699,15 +3216,6 @@ class GoliothIntegrationType {
         required this.properties,
     });
 
-    GoliothIntegrationType copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothIntegrationTypeProperties? properties,
-    }) => 
-        GoliothIntegrationType(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory GoliothIntegrationType.fromJson(Map<String, dynamic> json) => GoliothIntegrationType(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: GoliothIntegrationTypeProperties.fromJson(json["properties"]),
@@ -4732,19 +3240,6 @@ class GoliothIntegrationTypeProperties {
         required this.attributes,
     });
 
-    GoliothIntegrationTypeProperties copyWith({
-        GoliothArtifactUpdate? name,
-        GoliothArtifactUpdate? type,
-        GoliothArtifactUpdate? description,
-        Items? attributes,
-    }) => 
-        GoliothIntegrationTypeProperties(
-            name: name ?? this.name,
-            type: type ?? this.type,
-            description: description ?? this.description,
-            attributes: attributes ?? this.attributes,
-        );
-
     factory GoliothIntegrationTypeProperties.fromJson(Map<String, dynamic> json) => GoliothIntegrationTypeProperties(
         name: GoliothArtifactUpdate.fromJson(json["name"]),
         type: GoliothArtifactUpdate.fromJson(json["type"]),
@@ -4768,15 +3263,6 @@ class GoliothIntegrationTypeAttribute {
         required this.type,
         required this.properties,
     });
-
-    GoliothIntegrationTypeAttribute copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothIntegrationTypeAttributeProperties? properties,
-    }) => 
-        GoliothIntegrationTypeAttribute(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
 
     factory GoliothIntegrationTypeAttribute.fromJson(Map<String, dynamic> json) => GoliothIntegrationTypeAttribute(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
@@ -4804,21 +3290,6 @@ class GoliothIntegrationTypeAttributeProperties {
         required this.displayName,
     });
 
-    GoliothIntegrationTypeAttributeProperties copyWith({
-        GoliothArtifactUpdate? name,
-        GoliothArtifactUpdate? description,
-        GoliothArtifactUpdate? type,
-        GoliothArtifactUpdate? required,
-        GoliothArtifactUpdate? displayName,
-    }) => 
-        GoliothIntegrationTypeAttributeProperties(
-            name: name ?? this.name,
-            description: description ?? this.description,
-            type: type ?? this.type,
-            required: required ?? this.required,
-            displayName: displayName ?? this.displayName,
-        );
-
     factory GoliothIntegrationTypeAttributeProperties.fromJson(Map<String, dynamic> json) => GoliothIntegrationTypeAttributeProperties(
         name: GoliothArtifactUpdate.fromJson(json["name"]),
         description: GoliothArtifactUpdate.fromJson(json["description"]),
@@ -4845,15 +3316,6 @@ class GoliothIntegrationUpdate {
         required this.properties,
     });
 
-    GoliothIntegrationUpdate copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothIntegrationUpdateProperties? properties,
-    }) => 
-        GoliothIntegrationUpdate(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory GoliothIntegrationUpdate.fromJson(Map<String, dynamic> json) => GoliothIntegrationUpdate(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: GoliothIntegrationUpdateProperties.fromJson(json["properties"]),
@@ -4877,19 +3339,6 @@ class GoliothIntegrationUpdateProperties {
         required this.configuration,
         required this.eventTypes,
     });
-
-    GoliothIntegrationUpdateProperties copyWith({
-        GoliothArtifactUpdate? name,
-        GoliothArtifactUpdate? enabled,
-        GoliothArtifactUpdate? configuration,
-        Items? eventTypes,
-    }) => 
-        GoliothIntegrationUpdateProperties(
-            name: name ?? this.name,
-            enabled: enabled ?? this.enabled,
-            configuration: configuration ?? this.configuration,
-            eventTypes: eventTypes ?? this.eventTypes,
-        );
 
     factory GoliothIntegrationUpdateProperties.fromJson(Map<String, dynamic> json) => GoliothIntegrationUpdateProperties(
         name: GoliothArtifactUpdate.fromJson(json["name"]),
@@ -4915,15 +3364,6 @@ class GoliothInviteUserRequest {
         required this.properties,
     });
 
-    GoliothInviteUserRequest copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothInviteUserRequestProperties? properties,
-    }) => 
-        GoliothInviteUserRequest(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory GoliothInviteUserRequest.fromJson(Map<String, dynamic> json) => GoliothInviteUserRequest(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: GoliothInviteUserRequestProperties.fromJson(json["properties"]),
@@ -4944,15 +3384,6 @@ class GoliothInviteUserRequestProperties {
         required this.email,
     });
 
-    GoliothInviteUserRequestProperties copyWith({
-        GoliothArtifactUpdate? projectId,
-        GoliothArtifactUpdate? email,
-    }) => 
-        GoliothInviteUserRequestProperties(
-            projectId: projectId ?? this.projectId,
-            email: email ?? this.email,
-        );
-
     factory GoliothInviteUserRequestProperties.fromJson(Map<String, dynamic> json) => GoliothInviteUserRequestProperties(
         projectId: GoliothArtifactUpdate.fromJson(json["projectId"]),
         email: GoliothArtifactUpdate.fromJson(json["email"]),
@@ -4972,15 +3403,6 @@ class GoliothOrganization {
         required this.type,
         required this.properties,
     });
-
-    GoliothOrganization copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothOrganizationProperties? properties,
-    }) => 
-        GoliothOrganization(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
 
     factory GoliothOrganization.fromJson(Map<String, dynamic> json) => GoliothOrganization(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
@@ -5014,27 +3436,6 @@ class GoliothOrganizationProperties {
         required this.website,
     });
 
-    GoliothOrganizationProperties copyWith({
-        GoliothArtifactUpdate? id,
-        GoliothArtifactUpdate? name,
-        CreatedAt? createdAt,
-        CreatedAt? updatedAt,
-        KeyTags? roles,
-        GoliothArtifactUpdate? tier,
-        GoliothArtifactUpdate? paymentStatus,
-        GoliothArtifactUpdate? website,
-    }) => 
-        GoliothOrganizationProperties(
-            id: id ?? this.id,
-            name: name ?? this.name,
-            createdAt: createdAt ?? this.createdAt,
-            updatedAt: updatedAt ?? this.updatedAt,
-            roles: roles ?? this.roles,
-            tier: tier ?? this.tier,
-            paymentStatus: paymentStatus ?? this.paymentStatus,
-            website: website ?? this.website,
-        );
-
     factory GoliothOrganizationProperties.fromJson(Map<String, dynamic> json) => GoliothOrganizationProperties(
         id: GoliothArtifactUpdate.fromJson(json["id"]),
         name: GoliothArtifactUpdate.fromJson(json["name"]),
@@ -5067,15 +3468,6 @@ class GoliothPermission {
         required this.properties,
     });
 
-    GoliothPermission copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothPermissionProperties? properties,
-    }) => 
-        GoliothPermission(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory GoliothPermission.fromJson(Map<String, dynamic> json) => GoliothPermission(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: GoliothPermissionProperties.fromJson(json["properties"]),
@@ -5096,15 +3488,6 @@ class GoliothPermissionProperties {
         required this.action,
     });
 
-    GoliothPermissionProperties copyWith({
-        GoliothArtifactUpdate? resource,
-        GoliothArtifactUpdate? action,
-    }) => 
-        GoliothPermissionProperties(
-            resource: resource ?? this.resource,
-            action: action ?? this.action,
-        );
-
     factory GoliothPermissionProperties.fromJson(Map<String, dynamic> json) => GoliothPermissionProperties(
         resource: GoliothArtifactUpdate.fromJson(json["resource"]),
         action: GoliothArtifactUpdate.fromJson(json["action"]),
@@ -5124,15 +3507,6 @@ class GoliothPlan {
         required this.type,
         required this.properties,
     });
-
-    GoliothPlan copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothPlanProperties? properties,
-    }) => 
-        GoliothPlan(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
 
     factory GoliothPlan.fromJson(Map<String, dynamic> json) => GoliothPlan(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
@@ -5168,29 +3542,6 @@ class GoliothPlanProperties {
         required this.metadata,
     });
 
-    GoliothPlanProperties copyWith({
-        GoliothArtifactUpdate? id,
-        GoliothArtifactUpdate? name,
-        GoliothArtifactUpdate? description,
-        CreatedAt? price,
-        GoliothArtifactUpdate? currency,
-        GoliothArtifactUpdate? interval,
-        GoliothArtifactUpdate? imageUrl,
-        GoliothArtifactUpdate? group,
-        GoliothArtifactUpdate? metadata,
-    }) => 
-        GoliothPlanProperties(
-            id: id ?? this.id,
-            name: name ?? this.name,
-            description: description ?? this.description,
-            price: price ?? this.price,
-            currency: currency ?? this.currency,
-            interval: interval ?? this.interval,
-            imageUrl: imageUrl ?? this.imageUrl,
-            group: group ?? this.group,
-            metadata: metadata ?? this.metadata,
-        );
-
     factory GoliothPlanProperties.fromJson(Map<String, dynamic> json) => GoliothPlanProperties(
         id: GoliothArtifactUpdate.fromJson(json["id"]),
         name: GoliothArtifactUpdate.fromJson(json["name"]),
@@ -5225,15 +3576,6 @@ class GoliothPolicy {
         required this.properties,
     });
 
-    GoliothPolicy copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothPolicyProperties? properties,
-    }) => 
-        GoliothPolicy(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory GoliothPolicy.fromJson(Map<String, dynamic> json) => GoliothPolicy(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: GoliothPolicyProperties.fromJson(json["properties"]),
@@ -5265,27 +3607,6 @@ class GoliothPolicyProperties {
         required this.createdAt,
         required this.updatedAt,
     });
-
-    GoliothPolicyProperties copyWith({
-        GoliothArtifactUpdate? id,
-        GoliothArtifactUpdate? userId,
-        KeyTags? roles,
-        GoliothArtifactUpdate? resourceType,
-        GoliothArtifactUpdate? resourceId,
-        TypeClass? conditionals,
-        CreatedAt? createdAt,
-        CreatedAt? updatedAt,
-    }) => 
-        GoliothPolicyProperties(
-            id: id ?? this.id,
-            userId: userId ?? this.userId,
-            roles: roles ?? this.roles,
-            resourceType: resourceType ?? this.resourceType,
-            resourceId: resourceId ?? this.resourceId,
-            conditionals: conditionals ?? this.conditionals,
-            createdAt: createdAt ?? this.createdAt,
-            updatedAt: updatedAt ?? this.updatedAt,
-        );
 
     factory GoliothPolicyProperties.fromJson(Map<String, dynamic> json) => GoliothPolicyProperties(
         id: GoliothArtifactUpdate.fromJson(json["id"]),
@@ -5319,15 +3640,6 @@ class GoliothPolicyUpdate {
         required this.properties,
     });
 
-    GoliothPolicyUpdate copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothPolicyUpdateProperties? properties,
-    }) => 
-        GoliothPolicyUpdate(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory GoliothPolicyUpdate.fromJson(Map<String, dynamic> json) => GoliothPolicyUpdate(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: GoliothPolicyUpdateProperties.fromJson(json["properties"]),
@@ -5355,23 +3667,6 @@ class GoliothPolicyUpdateProperties {
         required this.roles,
         required this.tagIds,
     });
-
-    GoliothPolicyUpdateProperties copyWith({
-        KeyTags? addRoles,
-        KeyTags? removeRoles,
-        KeyTags? addTags,
-        KeyTags? removeTags,
-        KeyTags? roles,
-        KeyTags? tagIds,
-    }) => 
-        GoliothPolicyUpdateProperties(
-            addRoles: addRoles ?? this.addRoles,
-            removeRoles: removeRoles ?? this.removeRoles,
-            addTags: addTags ?? this.addTags,
-            removeTags: removeTags ?? this.removeTags,
-            roles: roles ?? this.roles,
-            tagIds: tagIds ?? this.tagIds,
-        );
 
     factory GoliothPolicyUpdateProperties.fromJson(Map<String, dynamic> json) => GoliothPolicyUpdateProperties(
         addRoles: KeyTags.fromJson(json["addRoles"]),
@@ -5401,15 +3696,6 @@ class GoliothProject {
         required this.properties,
     });
 
-    GoliothProject copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothProjectProperties? properties,
-    }) => 
-        GoliothProject(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory GoliothProject.fromJson(Map<String, dynamic> json) => GoliothProject(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: GoliothProjectProperties.fromJson(json["properties"]),
@@ -5437,23 +3723,6 @@ class GoliothProjectProperties {
         required this.roles,
         required this.organizationId,
     });
-
-    GoliothProjectProperties copyWith({
-        GoliothArtifactUpdate? id,
-        GoliothArtifactUpdate? name,
-        CreatedAt? createdAt,
-        CreatedAt? updatedAt,
-        KeyTags? roles,
-        GoliothArtifactUpdate? organizationId,
-    }) => 
-        GoliothProjectProperties(
-            id: id ?? this.id,
-            name: name ?? this.name,
-            createdAt: createdAt ?? this.createdAt,
-            updatedAt: updatedAt ?? this.updatedAt,
-            roles: roles ?? this.roles,
-            organizationId: organizationId ?? this.organizationId,
-        );
 
     factory GoliothProjectProperties.fromJson(Map<String, dynamic> json) => GoliothProjectProperties(
         id: GoliothArtifactUpdate.fromJson(json["id"]),
@@ -5483,15 +3752,6 @@ class GoliothUpdate {
         required this.properties,
     });
 
-    GoliothUpdate copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothProjectUpdateProperties? properties,
-    }) => 
-        GoliothUpdate(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory GoliothUpdate.fromJson(Map<String, dynamic> json) => GoliothUpdate(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: GoliothProjectUpdateProperties.fromJson(json["properties"]),
@@ -5509,13 +3769,6 @@ class GoliothProjectUpdateProperties {
     GoliothProjectUpdateProperties({
         required this.name,
     });
-
-    GoliothProjectUpdateProperties copyWith({
-        GoliothArtifactUpdate? name,
-    }) => 
-        GoliothProjectUpdateProperties(
-            name: name ?? this.name,
-        );
 
     factory GoliothProjectUpdateProperties.fromJson(Map<String, dynamic> json) => GoliothProjectUpdateProperties(
         name: GoliothArtifactUpdate.fromJson(json["name"]),
@@ -5535,15 +3788,6 @@ class GoliothProvisionData {
         required this.properties,
     });
 
-    GoliothProvisionData copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothProvisionDataProperties? properties,
-    }) => 
-        GoliothProvisionData(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory GoliothProvisionData.fromJson(Map<String, dynamic> json) => GoliothProvisionData(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: GoliothProvisionDataProperties.fromJson(json["properties"]),
@@ -5562,13 +3806,6 @@ class GoliothProvisionDataProperties {
         required this.deviceId,
     });
 
-    GoliothProvisionDataProperties copyWith({
-        GoliothArtifactUpdate? deviceId,
-    }) => 
-        GoliothProvisionDataProperties(
-            deviceId: deviceId ?? this.deviceId,
-        );
-
     factory GoliothProvisionDataProperties.fromJson(Map<String, dynamic> json) => GoliothProvisionDataProperties(
         deviceId: GoliothArtifactUpdate.fromJson(json["deviceId"]),
     );
@@ -5586,15 +3823,6 @@ class GoliothProvisionDeviceRequest {
         required this.type,
         required this.properties,
     });
-
-    GoliothProvisionDeviceRequest copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothProvisionDeviceRequestProperties? properties,
-    }) => 
-        GoliothProvisionDeviceRequest(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
 
     factory GoliothProvisionDeviceRequest.fromJson(Map<String, dynamic> json) => GoliothProvisionDeviceRequest(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
@@ -5630,29 +3858,6 @@ class GoliothProvisionDeviceRequestProperties {
         required this.blueprintId,
     });
 
-    GoliothProvisionDeviceRequestProperties copyWith({
-        GoliothArtifactUpdate? deviceId,
-        KeyTags? hardwareIds,
-        GoliothArtifactUpdate? projectId,
-        GoliothArtifactUpdate? name,
-        TypeClass? type,
-        GoliothArtifactUpdate? identity,
-        GoliothArtifactUpdate? preSharedKey,
-        KeyTags? tagIds,
-        GoliothArtifactUpdate? blueprintId,
-    }) => 
-        GoliothProvisionDeviceRequestProperties(
-            deviceId: deviceId ?? this.deviceId,
-            hardwareIds: hardwareIds ?? this.hardwareIds,
-            projectId: projectId ?? this.projectId,
-            name: name ?? this.name,
-            type: type ?? this.type,
-            identity: identity ?? this.identity,
-            preSharedKey: preSharedKey ?? this.preSharedKey,
-            tagIds: tagIds ?? this.tagIds,
-            blueprintId: blueprintId ?? this.blueprintId,
-        );
-
     factory GoliothProvisionDeviceRequestProperties.fromJson(Map<String, dynamic> json) => GoliothProvisionDeviceRequestProperties(
         deviceId: GoliothArtifactUpdate.fromJson(json["deviceId"]),
         hardwareIds: KeyTags.fromJson(json["hardwareIds"]),
@@ -5687,15 +3892,6 @@ class GoliothQueryField {
         required this.properties,
     });
 
-    GoliothQueryField copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothQueryFieldProperties? properties,
-    }) => 
-        GoliothQueryField(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory GoliothQueryField.fromJson(Map<String, dynamic> json) => GoliothQueryField(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: GoliothQueryFieldProperties.fromJson(json["properties"]),
@@ -5719,19 +3915,6 @@ class GoliothQueryFieldProperties {
         required this.alias,
         required this.agg,
     });
-
-    GoliothQueryFieldProperties copyWith({
-        GoliothArtifactUpdate? path,
-        GoliothArtifactUpdate? type,
-        GoliothArtifactUpdate? alias,
-        GoliothArtifactUpdate? agg,
-    }) => 
-        GoliothQueryFieldProperties(
-            path: path ?? this.path,
-            type: type ?? this.type,
-            alias: alias ?? this.alias,
-            agg: agg ?? this.agg,
-        );
 
     factory GoliothQueryFieldProperties.fromJson(Map<String, dynamic> json) => GoliothQueryFieldProperties(
         path: GoliothArtifactUpdate.fromJson(json["path"]),
@@ -5757,15 +3940,6 @@ class GoliothQueryFilter {
         required this.properties,
     });
 
-    GoliothQueryFilter copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothQueryFilterProperties? properties,
-    }) => 
-        GoliothQueryFilter(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory GoliothQueryFilter.fromJson(Map<String, dynamic> json) => GoliothQueryFilter(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: GoliothQueryFilterProperties.fromJson(json["properties"]),
@@ -5789,19 +3963,6 @@ class GoliothQueryFilterProperties {
         required this.value,
         required this.filters,
     });
-
-    GoliothQueryFilterProperties copyWith({
-        GoliothArtifactUpdate? path,
-        GoliothArtifactUpdate? op,
-        GoliothArtifactUpdate? value,
-        Items? filters,
-    }) => 
-        GoliothQueryFilterProperties(
-            path: path ?? this.path,
-            op: op ?? this.op,
-            value: value ?? this.value,
-            filters: filters ?? this.filters,
-        );
 
     factory GoliothQueryFilterProperties.fromJson(Map<String, dynamic> json) => GoliothQueryFilterProperties(
         path: GoliothArtifactUpdate.fromJson(json["path"]),
@@ -5827,15 +3988,6 @@ class GoliothQuota {
         required this.properties,
     });
 
-    GoliothQuota copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothQuotaProperties? properties,
-    }) => 
-        GoliothQuota(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory GoliothQuota.fromJson(Map<String, dynamic> json) => GoliothQuota(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: GoliothQuotaProperties.fromJson(json["properties"]),
@@ -5855,15 +4007,6 @@ class GoliothQuotaProperties {
         required this.current,
         required this.max,
     });
-
-    GoliothQuotaProperties copyWith({
-        CreatedAt? current,
-        CreatedAt? max,
-    }) => 
-        GoliothQuotaProperties(
-            current: current ?? this.current,
-            max: max ?? this.max,
-        );
 
     factory GoliothQuotaProperties.fromJson(Map<String, dynamic> json) => GoliothQuotaProperties(
         current: CreatedAt.fromJson(json["current"]),
@@ -5885,15 +4028,6 @@ class GoliothQuotaPerType {
         required this.properties,
     });
 
-    GoliothQuotaPerType copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothQuotaPerTypeProperties? properties,
-    }) => 
-        GoliothQuotaPerType(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory GoliothQuotaPerType.fromJson(Map<String, dynamic> json) => GoliothQuotaPerType(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: GoliothQuotaPerTypeProperties.fromJson(json["properties"]),
@@ -5912,13 +4046,6 @@ class GoliothQuotaPerTypeProperties {
         required this.quotas,
     });
 
-    GoliothQuotaPerTypeProperties copyWith({
-        Organizations? quotas,
-    }) => 
-        GoliothQuotaPerTypeProperties(
-            quotas: quotas ?? this.quotas,
-        );
-
     factory GoliothQuotaPerTypeProperties.fromJson(Map<String, dynamic> json) => GoliothQuotaPerTypeProperties(
         quotas: Organizations.fromJson(json["quotas"]),
     );
@@ -5936,15 +4063,6 @@ class GoliothRelease {
         required this.type,
         required this.properties,
     });
-
-    GoliothRelease copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothReleaseProperties? properties,
-    }) => 
-        GoliothRelease(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
 
     factory GoliothRelease.fromJson(Map<String, dynamic> json) => GoliothRelease(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
@@ -5982,31 +4100,6 @@ class GoliothReleaseProperties {
         required this.blueprintId,
     });
 
-    GoliothReleaseProperties copyWith({
-        GoliothArtifactUpdate? id,
-        CreatedAt? createdAt,
-        CreatedAt? updatedAt,
-        KeyTags? releaseTags,
-        KeyTags? deviceTagIds,
-        GoliothArtifactUpdate? suitManifest,
-        KeyTags? artifactIds,
-        GoliothArtifactUpdate? rollout,
-        CreatedAt? sequenceNumber,
-        GoliothArtifactUpdate? blueprintId,
-    }) => 
-        GoliothReleaseProperties(
-            id: id ?? this.id,
-            createdAt: createdAt ?? this.createdAt,
-            updatedAt: updatedAt ?? this.updatedAt,
-            releaseTags: releaseTags ?? this.releaseTags,
-            deviceTagIds: deviceTagIds ?? this.deviceTagIds,
-            suitManifest: suitManifest ?? this.suitManifest,
-            artifactIds: artifactIds ?? this.artifactIds,
-            rollout: rollout ?? this.rollout,
-            sequenceNumber: sequenceNumber ?? this.sequenceNumber,
-            blueprintId: blueprintId ?? this.blueprintId,
-        );
-
     factory GoliothReleaseProperties.fromJson(Map<String, dynamic> json) => GoliothReleaseProperties(
         id: GoliothArtifactUpdate.fromJson(json["id"]),
         createdAt: CreatedAt.fromJson(json["createdAt"]),
@@ -6043,15 +4136,6 @@ class GoliothReleaseUpdate {
         required this.properties,
     });
 
-    GoliothReleaseUpdate copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothReleaseUpdateProperties? properties,
-    }) => 
-        GoliothReleaseUpdate(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory GoliothReleaseUpdate.fromJson(Map<String, dynamic> json) => GoliothReleaseUpdate(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: GoliothReleaseUpdateProperties.fromJson(json["properties"]),
@@ -6081,25 +4165,6 @@ class GoliothReleaseUpdateProperties {
         required this.removeReleaseTag,
         required this.releaseTags,
     });
-
-    GoliothReleaseUpdateProperties copyWith({
-        KeyTags? addDeviceTagId,
-        KeyTags? removeDeviceTagId,
-        KeyTags? deviceTagIds,
-        GoliothArtifactUpdate? rollout,
-        KeyTags? addReleaseTag,
-        KeyTags? removeReleaseTag,
-        KeyTags? releaseTags,
-    }) => 
-        GoliothReleaseUpdateProperties(
-            addDeviceTagId: addDeviceTagId ?? this.addDeviceTagId,
-            removeDeviceTagId: removeDeviceTagId ?? this.removeDeviceTagId,
-            deviceTagIds: deviceTagIds ?? this.deviceTagIds,
-            rollout: rollout ?? this.rollout,
-            addReleaseTag: addReleaseTag ?? this.addReleaseTag,
-            removeReleaseTag: removeReleaseTag ?? this.removeReleaseTag,
-            releaseTags: releaseTags ?? this.releaseTags,
-        );
 
     factory GoliothReleaseUpdateProperties.fromJson(Map<String, dynamic> json) => GoliothReleaseUpdateProperties(
         addDeviceTagId: KeyTags.fromJson(json["addDeviceTagId"]),
@@ -6131,15 +4196,6 @@ class GoliothRemoteProcedureCallRequest {
         required this.properties,
     });
 
-    GoliothRemoteProcedureCallRequest copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothRemoteProcedureCallRequestProperties? properties,
-    }) => 
-        GoliothRemoteProcedureCallRequest(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory GoliothRemoteProcedureCallRequest.fromJson(Map<String, dynamic> json) => GoliothRemoteProcedureCallRequest(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: GoliothRemoteProcedureCallRequestProperties.fromJson(json["properties"]),
@@ -6165,21 +4221,6 @@ class GoliothRemoteProcedureCallRequestProperties {
         required this.params,
         required this.timeout,
     });
-
-    GoliothRemoteProcedureCallRequestProperties copyWith({
-        GoliothArtifactUpdate? projectId,
-        GoliothArtifactUpdate? deviceId,
-        GoliothArtifactUpdate? method,
-        KeyTags? params,
-        CreatedAt? timeout,
-    }) => 
-        GoliothRemoteProcedureCallRequestProperties(
-            projectId: projectId ?? this.projectId,
-            deviceId: deviceId ?? this.deviceId,
-            method: method ?? this.method,
-            params: params ?? this.params,
-            timeout: timeout ?? this.timeout,
-        );
 
     factory GoliothRemoteProcedureCallRequestProperties.fromJson(Map<String, dynamic> json) => GoliothRemoteProcedureCallRequestProperties(
         projectId: GoliothArtifactUpdate.fromJson(json["projectId"]),
@@ -6207,15 +4248,6 @@ class GoliothRemoteProcedureCallResponse {
         required this.properties,
     });
 
-    GoliothRemoteProcedureCallResponse copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothRemoteProcedureCallResponseProperties? properties,
-    }) => 
-        GoliothRemoteProcedureCallResponse(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory GoliothRemoteProcedureCallResponse.fromJson(Map<String, dynamic> json) => GoliothRemoteProcedureCallResponse(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: GoliothRemoteProcedureCallResponseProperties.fromJson(json["properties"]),
@@ -6236,15 +4268,6 @@ class GoliothRemoteProcedureCallResponseProperties {
         required this.detail,
     });
 
-    GoliothRemoteProcedureCallResponseProperties copyWith({
-        CreatedAt? statusCode,
-        GoliothArtifactUpdate? detail,
-    }) => 
-        GoliothRemoteProcedureCallResponseProperties(
-            statusCode: statusCode ?? this.statusCode,
-            detail: detail ?? this.detail,
-        );
-
     factory GoliothRemoteProcedureCallResponseProperties.fromJson(Map<String, dynamic> json) => GoliothRemoteProcedureCallResponseProperties(
         statusCode: CreatedAt.fromJson(json["statusCode"]),
         detail: GoliothArtifactUpdate.fromJson(json["detail"]),
@@ -6264,15 +4287,6 @@ class GoliothRole {
         required this.type,
         required this.properties,
     });
-
-    GoliothRole copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothRoleProperties? properties,
-    }) => 
-        GoliothRole(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
 
     factory GoliothRole.fromJson(Map<String, dynamic> json) => GoliothRole(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
@@ -6300,21 +4314,6 @@ class GoliothRoleProperties {
         required this.permissions,
     });
 
-    GoliothRoleProperties copyWith({
-        GoliothArtifactUpdate? id,
-        GoliothArtifactUpdate? name,
-        GoliothArtifactUpdate? type,
-        KeyTags? children,
-        Items? permissions,
-    }) => 
-        GoliothRoleProperties(
-            id: id ?? this.id,
-            name: name ?? this.name,
-            type: type ?? this.type,
-            children: children ?? this.children,
-            permissions: permissions ?? this.permissions,
-        );
-
     factory GoliothRoleProperties.fromJson(Map<String, dynamic> json) => GoliothRoleProperties(
         id: GoliothArtifactUpdate.fromJson(json["id"]),
         name: GoliothArtifactUpdate.fromJson(json["name"]),
@@ -6340,15 +4339,6 @@ class GoliothSetting {
         required this.type,
         required this.properties,
     });
-
-    GoliothSetting copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothSettingProperties? properties,
-    }) => 
-        GoliothSetting(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
 
     factory GoliothSetting.fromJson(Map<String, dynamic> json) => GoliothSetting(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
@@ -6384,29 +4374,6 @@ class GoliothSettingProperties {
         required this.updatedAt,
     });
 
-    GoliothSettingProperties copyWith({
-        GoliothArtifactUpdate? id,
-        GoliothArtifactUpdate? key,
-        GoliothArtifactUpdate? value,
-        GoliothArtifactUpdate? dataType,
-        GoliothArtifactUpdate? projectId,
-        GoliothArtifactUpdate? blueprintId,
-        GoliothArtifactUpdate? deviceId,
-        CreatedAt? createdAt,
-        CreatedAt? updatedAt,
-    }) => 
-        GoliothSettingProperties(
-            id: id ?? this.id,
-            key: key ?? this.key,
-            value: value ?? this.value,
-            dataType: dataType ?? this.dataType,
-            projectId: projectId ?? this.projectId,
-            blueprintId: blueprintId ?? this.blueprintId,
-            deviceId: deviceId ?? this.deviceId,
-            createdAt: createdAt ?? this.createdAt,
-            updatedAt: updatedAt ?? this.updatedAt,
-        );
-
     factory GoliothSettingProperties.fromJson(Map<String, dynamic> json) => GoliothSettingProperties(
         id: GoliothArtifactUpdate.fromJson(json["id"]),
         key: GoliothArtifactUpdate.fromJson(json["key"]),
@@ -6441,15 +4408,6 @@ class GoliothSettingDataType {
         required this.properties,
     });
 
-    GoliothSettingDataType copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothSettingDataTypeProperties? properties,
-    }) => 
-        GoliothSettingDataType(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory GoliothSettingDataType.fromJson(Map<String, dynamic> json) => GoliothSettingDataType(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: GoliothSettingDataTypeProperties.fromJson(json["properties"]),
@@ -6468,13 +4426,6 @@ class GoliothSettingDataTypeProperties {
         required this.type,
     });
 
-    GoliothSettingDataTypeProperties copyWith({
-        GoliothArtifactUpdate? type,
-    }) => 
-        GoliothSettingDataTypeProperties(
-            type: type ?? this.type,
-        );
-
     factory GoliothSettingDataTypeProperties.fromJson(Map<String, dynamic> json) => GoliothSettingDataTypeProperties(
         type: GoliothArtifactUpdate.fromJson(json["type"]),
     );
@@ -6492,15 +4443,6 @@ class GoliothSettingError {
         required this.type,
         required this.properties,
     });
-
-    GoliothSettingError copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothSettingErrorProperties? properties,
-    }) => 
-        GoliothSettingError(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
 
     factory GoliothSettingError.fromJson(Map<String, dynamic> json) => GoliothSettingError(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
@@ -6526,19 +4468,6 @@ class GoliothSettingErrorProperties {
         required this.deviceDetails,
     });
 
-    GoliothSettingErrorProperties copyWith({
-        GoliothArtifactUpdate? key,
-        CreatedAt? code,
-        GoliothArtifactUpdate? codeDescription,
-        GoliothArtifactUpdate? deviceDetails,
-    }) => 
-        GoliothSettingErrorProperties(
-            key: key ?? this.key,
-            code: code ?? this.code,
-            codeDescription: codeDescription ?? this.codeDescription,
-            deviceDetails: deviceDetails ?? this.deviceDetails,
-        );
-
     factory GoliothSettingErrorProperties.fromJson(Map<String, dynamic> json) => GoliothSettingErrorProperties(
         key: GoliothArtifactUpdate.fromJson(json["key"]),
         code: CreatedAt.fromJson(json["code"]),
@@ -6563,15 +4492,6 @@ class GoliothSettingUpdate {
         required this.properties,
     });
 
-    GoliothSettingUpdate copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothSettingUpdateProperties? properties,
-    }) => 
-        GoliothSettingUpdate(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory GoliothSettingUpdate.fromJson(Map<String, dynamic> json) => GoliothSettingUpdate(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: GoliothSettingUpdateProperties.fromJson(json["properties"]),
@@ -6590,13 +4510,6 @@ class GoliothSettingUpdateProperties {
         required this.value,
     });
 
-    GoliothSettingUpdateProperties copyWith({
-        GoliothArtifactUpdate? value,
-    }) => 
-        GoliothSettingUpdateProperties(
-            value: value ?? this.value,
-        );
-
     factory GoliothSettingUpdateProperties.fromJson(Map<String, dynamic> json) => GoliothSettingUpdateProperties(
         value: GoliothArtifactUpdate.fromJson(json["value"]),
     );
@@ -6614,15 +4527,6 @@ class GoliothSettingsStatus {
         required this.type,
         required this.properties,
     });
-
-    GoliothSettingsStatus copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothSettingsStatusProperties? properties,
-    }) => 
-        GoliothSettingsStatus(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
 
     factory GoliothSettingsStatus.fromJson(Map<String, dynamic> json) => GoliothSettingsStatus(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
@@ -6650,21 +4554,6 @@ class GoliothSettingsStatusProperties {
         required this.errors,
     });
 
-    GoliothSettingsStatusProperties copyWith({
-        CreatedAt? syncTime,
-        GoliothArtifactUpdate? reportedVersion,
-        GoliothArtifactUpdate? status,
-        GoliothArtifactUpdate? statusDetail,
-        Items? errors,
-    }) => 
-        GoliothSettingsStatusProperties(
-            syncTime: syncTime ?? this.syncTime,
-            reportedVersion: reportedVersion ?? this.reportedVersion,
-            status: status ?? this.status,
-            statusDetail: statusDetail ?? this.statusDetail,
-            errors: errors ?? this.errors,
-        );
-
     factory GoliothSettingsStatusProperties.fromJson(Map<String, dynamic> json) => GoliothSettingsStatusProperties(
         syncTime: CreatedAt.fromJson(json["syncTime"]),
         reportedVersion: GoliothArtifactUpdate.fromJson(json["reportedVersion"]),
@@ -6691,15 +4580,6 @@ class GoliothSubscriptionItem {
         required this.properties,
     });
 
-    GoliothSubscriptionItem copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothSubscriptionItemProperties? properties,
-    }) => 
-        GoliothSubscriptionItem(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory GoliothSubscriptionItem.fromJson(Map<String, dynamic> json) => GoliothSubscriptionItem(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: GoliothSubscriptionItemProperties.fromJson(json["properties"]),
@@ -6720,15 +4600,6 @@ class GoliothSubscriptionItemProperties {
         required this.quantity,
     });
 
-    GoliothSubscriptionItemProperties copyWith({
-        GoliothArtifactUpdate? lookupKey,
-        CreatedAt? quantity,
-    }) => 
-        GoliothSubscriptionItemProperties(
-            lookupKey: lookupKey ?? this.lookupKey,
-            quantity: quantity ?? this.quantity,
-        );
-
     factory GoliothSubscriptionItemProperties.fromJson(Map<String, dynamic> json) => GoliothSubscriptionItemProperties(
         lookupKey: GoliothArtifactUpdate.fromJson(json["lookupKey"]),
         quantity: CreatedAt.fromJson(json["quantity"]),
@@ -6748,15 +4619,6 @@ class GoliothTestIntegrationRequest {
         required this.type,
         required this.properties,
     });
-
-    GoliothTestIntegrationRequest copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothTestIntegrationRequestProperties? properties,
-    }) => 
-        GoliothTestIntegrationRequest(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
 
     factory GoliothTestIntegrationRequest.fromJson(Map<String, dynamic> json) => GoliothTestIntegrationRequest(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
@@ -6780,17 +4642,6 @@ class GoliothTestIntegrationRequestProperties {
         required this.data,
     });
 
-    GoliothTestIntegrationRequestProperties copyWith({
-        GoliothArtifactUpdate? projectId,
-        GoliothArtifactUpdate? integrationId,
-        GoliothArtifactUpdate? data,
-    }) => 
-        GoliothTestIntegrationRequestProperties(
-            projectId: projectId ?? this.projectId,
-            integrationId: integrationId ?? this.integrationId,
-            data: data ?? this.data,
-        );
-
     factory GoliothTestIntegrationRequestProperties.fromJson(Map<String, dynamic> json) => GoliothTestIntegrationRequestProperties(
         projectId: GoliothArtifactUpdate.fromJson(json["projectId"]),
         integrationId: GoliothArtifactUpdate.fromJson(json["integrationId"]),
@@ -6813,15 +4664,6 @@ class GoliothTestIntegrationResponse {
         required this.properties,
     });
 
-    GoliothTestIntegrationResponse copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothTestIntegrationResponseProperties? properties,
-    }) => 
-        GoliothTestIntegrationResponse(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory GoliothTestIntegrationResponse.fromJson(Map<String, dynamic> json) => GoliothTestIntegrationResponse(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: GoliothTestIntegrationResponseProperties.fromJson(json["properties"]),
@@ -6840,13 +4682,6 @@ class GoliothTestIntegrationResponseProperties {
         required this.result,
     });
 
-    GoliothTestIntegrationResponseProperties copyWith({
-        GoliothArtifactUpdate? result,
-    }) => 
-        GoliothTestIntegrationResponseProperties(
-            result: result ?? this.result,
-        );
-
     factory GoliothTestIntegrationResponseProperties.fromJson(Map<String, dynamic> json) => GoliothTestIntegrationResponseProperties(
         result: GoliothArtifactUpdate.fromJson(json["result"]),
     );
@@ -6864,15 +4699,6 @@ class GoliothUser {
         required this.type,
         required this.properties,
     });
-
-    GoliothUser copyWith({
-        GoliothArtifactUpdateType? type,
-        GoliothUserProperties? properties,
-    }) => 
-        GoliothUser(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
 
     factory GoliothUser.fromJson(Map<String, dynamic> json) => GoliothUser(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
@@ -6904,25 +4730,6 @@ class GoliothUserProperties {
         required this.roles,
     });
 
-    GoliothUserProperties copyWith({
-        GoliothArtifactUpdate? id,
-        GoliothArtifactUpdate? name,
-        GoliothArtifactUpdate? email,
-        GoliothArtifactUpdate? profileUrl,
-        GoliothArtifactUpdate? emailVerified,
-        GoliothArtifactUpdate? policyId,
-        KeyTags? roles,
-    }) => 
-        GoliothUserProperties(
-            id: id ?? this.id,
-            name: name ?? this.name,
-            email: email ?? this.email,
-            profileUrl: profileUrl ?? this.profileUrl,
-            emailVerified: emailVerified ?? this.emailVerified,
-            policyId: policyId ?? this.policyId,
-            roles: roles ?? this.roles,
-        );
-
     factory GoliothUserProperties.fromJson(Map<String, dynamic> json) => GoliothUserProperties(
         id: GoliothArtifactUpdate.fromJson(json["id"]),
         name: GoliothArtifactUpdate.fromJson(json["name"]),
@@ -6953,15 +4760,6 @@ class ProtobufAny {
         required this.properties,
     });
 
-    ProtobufAny copyWith({
-        GoliothArtifactUpdateType? type,
-        ProtobufAnyProperties? properties,
-    }) => 
-        ProtobufAny(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
-
     factory ProtobufAny.fromJson(Map<String, dynamic> json) => ProtobufAny(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
         properties: ProtobufAnyProperties.fromJson(json["properties"]),
@@ -6982,15 +4780,6 @@ class ProtobufAnyProperties {
         required this.value,
     });
 
-    ProtobufAnyProperties copyWith({
-        GoliothArtifactUpdate? typeUrl,
-        CreatedAt? value,
-    }) => 
-        ProtobufAnyProperties(
-            typeUrl: typeUrl ?? this.typeUrl,
-            value: value ?? this.value,
-        );
-
     factory ProtobufAnyProperties.fromJson(Map<String, dynamic> json) => ProtobufAnyProperties(
         typeUrl: GoliothArtifactUpdate.fromJson(json["typeUrl"]),
         value: CreatedAt.fromJson(json["value"]),
@@ -7010,15 +4799,6 @@ class RpcStatus {
         required this.type,
         required this.properties,
     });
-
-    RpcStatus copyWith({
-        GoliothArtifactUpdateType? type,
-        RpcStatusProperties? properties,
-    }) => 
-        RpcStatus(
-            type: type ?? this.type,
-            properties: properties ?? this.properties,
-        );
 
     factory RpcStatus.fromJson(Map<String, dynamic> json) => RpcStatus(
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
@@ -7042,17 +4822,6 @@ class RpcStatusProperties {
         required this.details,
     });
 
-    RpcStatusProperties copyWith({
-        CreatedAt? code,
-        GoliothArtifactUpdate? message,
-        Items? details,
-    }) => 
-        RpcStatusProperties(
-            code: code ?? this.code,
-            message: message ?? this.message,
-            details: details ?? this.details,
-        );
-
     factory RpcStatusProperties.fromJson(Map<String, dynamic> json) => RpcStatusProperties(
         code: CreatedAt.fromJson(json["code"]),
         message: GoliothArtifactUpdate.fromJson(json["message"]),
@@ -7075,15 +4844,6 @@ class ExternalDocs {
         required this.url,
     });
 
-    ExternalDocs copyWith({
-        String? description,
-        String? url,
-    }) => 
-        ExternalDocs(
-            description: description ?? this.description,
-            url: url ?? this.url,
-        );
-
     factory ExternalDocs.fromJson(Map<String, dynamic> json) => ExternalDocs(
         description: json["description"],
         url: json["url"],
@@ -7103,15 +4863,6 @@ class Info {
         required this.title,
         required this.version,
     });
-
-    Info copyWith({
-        String? title,
-        String? version,
-    }) => 
-        Info(
-            title: title ?? this.title,
-            version: version ?? this.version,
-        );
 
     factory Info.fromJson(Map<String, dynamic> json) => Info(
         title: json["title"],
@@ -7245,127 +4996,6 @@ class Paths {
         required this.v1SettingsDataTypes,
     });
 
-    Paths copyWith({
-        V1ArtifactsClass? v1Artifacts,
-        V1BillingPlansClass? v1BillingPlans,
-        V1ArtifactsClass? v1BillingWebhook,
-        V1BillingPlansClass? v1Boards,
-        V1BillingPlansClass? v1BoardsId,
-        V1BillingPlansClass? v1EventTypes,
-        V1BillingPlansClass? v1IntegrationTypes,
-        V1OrganizationsClass? v1Organizations,
-        V1Id? v1OrganizationsOrganizationId,
-        V1ArtifactsClass? v1OrganizationsOrganizationIdCheckoutSessions,
-        V1ArtifactsClass? v1OrganizationsOrganizationIdCustomerPortalSessions,
-        V1OrganizationsClass? v1Projects,
-        V1Id? v1ProjectsProjectId,
-        V1OrganizationsClass? v1ProjectsProjectIdApikeys,
-        V1ProjectsProjectIdApikeysApikeyId? v1ProjectsProjectIdApikeysApikeyId,
-        V1BillingPlansClass? v1ProjectsProjectIdArtifacts,
-        V1Id? v1ProjectsProjectIdArtifactsArtifactId,
-        V1OrganizationsClass? v1ProjectsProjectIdBlueprints,
-        V1Id? v1ProjectsProjectIdBlueprintsBlueprintId,
-        V1OrganizationsClass? v1ProjectsProjectIdCertificates,
-        V1ProjectsProjectIdCertificatesCertificateId? v1ProjectsProjectIdCertificatesCertificateId,
-        V1ArtifactsClass? v1ProjectsProjectIdCredentials,
-        V1ProjectsProjectIdIdCredentialsCredentialId? v1ProjectsProjectIdCredentialsCredentialId,
-        V1BillingPlansClass? v1ProjectsProjectIdDeviceActivityLogs,
-        V1OrganizationsClass? v1ProjectsProjectIdDevices,
-        V1Id? v1ProjectsProjectIdDevicesDeviceId,
-        V1OrganizationsClass? v1ProjectsProjectIdDevicesDeviceIdCredentials,
-        V1ProjectsProjectIdIdCredentialsCredentialId? v1ProjectsProjectIdDevicesDeviceIdCredentialsCredentialId,
-        V1ProjectsProjectIdDevicesDataPath? v1ProjectsProjectIdDevicesDeviceIdDataPath,
-        V1ArtifactsClass? v1ProjectsProjectIdDevicesDeviceIdProvisioning,
-        V1ArtifactsClass? v1ProjectsProjectIdDevicesDeviceIdRpc,
-        V1BillingPlansClass? v1ProjectsProjectIdDevicesDeviceIdSettings,
-        V1OrganizationsClass? v1ProjectsProjectIdDevicesDeviceIdStream,
-        V1BillingPlansClass? v1ProjectsProjectIdDevicesDeviceIdStreamLatestPath,
-        V1ProjectsProjectIdDevicesDataPath? v1ProjectsProjectIdDevicesByTagTagDataPath,
-        V1BillingPlansClass? v1ProjectsProjectIdFirmwareLogs,
-        V1OrganizationsClass? v1ProjectsProjectIdIntegrations,
-        V1ArtifactsClass? v1ProjectsProjectIdIntegrationsValidate,
-        V1Id? v1ProjectsProjectIdIntegrationsIntegrationId,
-        V1ArtifactsClass? v1ProjectsProjectIdIntegrationsIntegrationIdTest,
-        V1BillingPlansClass? v1ProjectsProjectIdLogs,
-        V1ProjectsProjectIdMoveOrganizationId? v1ProjectsProjectIdMoveOrganizationId,
-        V1BillingPlansClass? v1ProjectsProjectIdPermissions,
-        V1BillingPlansClass? v1ProjectsProjectIdPolicies,
-        V1Id? v1ProjectsProjectIdPoliciesPolicyId,
-        V1ArtifactsClass? v1ProjectsProjectIdProvisioning,
-        V1OrganizationsClass? v1ProjectsProjectIdReleases,
-        V1Id? v1ProjectsProjectIdReleasesReleaseId,
-        V1OrganizationsClass? v1ProjectsProjectIdSettings,
-        V1Id? v1ProjectsProjectIdSettingsSettingId,
-        V1OrganizationsClass? v1ProjectsProjectIdStream,
-        V1OrganizationsClass? v1ProjectsProjectIdTags,
-        V1Id? v1ProjectsProjectIdTagsTagId,
-        V1BillingPlansClass? v1ProjectsProjectIdUsers,
-        V1ArtifactsClass? v1ProjectsProjectIdUsersInvitation,
-        V1BillingPlansClass? v1Quotas,
-        V1BillingPlansClass? v1Roles,
-        V1BillingPlansClass? v1SettingsDataTypes,
-    }) => 
-        Paths(
-            v1Artifacts: v1Artifacts ?? this.v1Artifacts,
-            v1BillingPlans: v1BillingPlans ?? this.v1BillingPlans,
-            v1BillingWebhook: v1BillingWebhook ?? this.v1BillingWebhook,
-            v1Boards: v1Boards ?? this.v1Boards,
-            v1BoardsId: v1BoardsId ?? this.v1BoardsId,
-            v1EventTypes: v1EventTypes ?? this.v1EventTypes,
-            v1IntegrationTypes: v1IntegrationTypes ?? this.v1IntegrationTypes,
-            v1Organizations: v1Organizations ?? this.v1Organizations,
-            v1OrganizationsOrganizationId: v1OrganizationsOrganizationId ?? this.v1OrganizationsOrganizationId,
-            v1OrganizationsOrganizationIdCheckoutSessions: v1OrganizationsOrganizationIdCheckoutSessions ?? this.v1OrganizationsOrganizationIdCheckoutSessions,
-            v1OrganizationsOrganizationIdCustomerPortalSessions: v1OrganizationsOrganizationIdCustomerPortalSessions ?? this.v1OrganizationsOrganizationIdCustomerPortalSessions,
-            v1Projects: v1Projects ?? this.v1Projects,
-            v1ProjectsProjectId: v1ProjectsProjectId ?? this.v1ProjectsProjectId,
-            v1ProjectsProjectIdApikeys: v1ProjectsProjectIdApikeys ?? this.v1ProjectsProjectIdApikeys,
-            v1ProjectsProjectIdApikeysApikeyId: v1ProjectsProjectIdApikeysApikeyId ?? this.v1ProjectsProjectIdApikeysApikeyId,
-            v1ProjectsProjectIdArtifacts: v1ProjectsProjectIdArtifacts ?? this.v1ProjectsProjectIdArtifacts,
-            v1ProjectsProjectIdArtifactsArtifactId: v1ProjectsProjectIdArtifactsArtifactId ?? this.v1ProjectsProjectIdArtifactsArtifactId,
-            v1ProjectsProjectIdBlueprints: v1ProjectsProjectIdBlueprints ?? this.v1ProjectsProjectIdBlueprints,
-            v1ProjectsProjectIdBlueprintsBlueprintId: v1ProjectsProjectIdBlueprintsBlueprintId ?? this.v1ProjectsProjectIdBlueprintsBlueprintId,
-            v1ProjectsProjectIdCertificates: v1ProjectsProjectIdCertificates ?? this.v1ProjectsProjectIdCertificates,
-            v1ProjectsProjectIdCertificatesCertificateId: v1ProjectsProjectIdCertificatesCertificateId ?? this.v1ProjectsProjectIdCertificatesCertificateId,
-            v1ProjectsProjectIdCredentials: v1ProjectsProjectIdCredentials ?? this.v1ProjectsProjectIdCredentials,
-            v1ProjectsProjectIdCredentialsCredentialId: v1ProjectsProjectIdCredentialsCredentialId ?? this.v1ProjectsProjectIdCredentialsCredentialId,
-            v1ProjectsProjectIdDeviceActivityLogs: v1ProjectsProjectIdDeviceActivityLogs ?? this.v1ProjectsProjectIdDeviceActivityLogs,
-            v1ProjectsProjectIdDevices: v1ProjectsProjectIdDevices ?? this.v1ProjectsProjectIdDevices,
-            v1ProjectsProjectIdDevicesDeviceId: v1ProjectsProjectIdDevicesDeviceId ?? this.v1ProjectsProjectIdDevicesDeviceId,
-            v1ProjectsProjectIdDevicesDeviceIdCredentials: v1ProjectsProjectIdDevicesDeviceIdCredentials ?? this.v1ProjectsProjectIdDevicesDeviceIdCredentials,
-            v1ProjectsProjectIdDevicesDeviceIdCredentialsCredentialId: v1ProjectsProjectIdDevicesDeviceIdCredentialsCredentialId ?? this.v1ProjectsProjectIdDevicesDeviceIdCredentialsCredentialId,
-            v1ProjectsProjectIdDevicesDeviceIdDataPath: v1ProjectsProjectIdDevicesDeviceIdDataPath ?? this.v1ProjectsProjectIdDevicesDeviceIdDataPath,
-            v1ProjectsProjectIdDevicesDeviceIdProvisioning: v1ProjectsProjectIdDevicesDeviceIdProvisioning ?? this.v1ProjectsProjectIdDevicesDeviceIdProvisioning,
-            v1ProjectsProjectIdDevicesDeviceIdRpc: v1ProjectsProjectIdDevicesDeviceIdRpc ?? this.v1ProjectsProjectIdDevicesDeviceIdRpc,
-            v1ProjectsProjectIdDevicesDeviceIdSettings: v1ProjectsProjectIdDevicesDeviceIdSettings ?? this.v1ProjectsProjectIdDevicesDeviceIdSettings,
-            v1ProjectsProjectIdDevicesDeviceIdStream: v1ProjectsProjectIdDevicesDeviceIdStream ?? this.v1ProjectsProjectIdDevicesDeviceIdStream,
-            v1ProjectsProjectIdDevicesDeviceIdStreamLatestPath: v1ProjectsProjectIdDevicesDeviceIdStreamLatestPath ?? this.v1ProjectsProjectIdDevicesDeviceIdStreamLatestPath,
-            v1ProjectsProjectIdDevicesByTagTagDataPath: v1ProjectsProjectIdDevicesByTagTagDataPath ?? this.v1ProjectsProjectIdDevicesByTagTagDataPath,
-            v1ProjectsProjectIdFirmwareLogs: v1ProjectsProjectIdFirmwareLogs ?? this.v1ProjectsProjectIdFirmwareLogs,
-            v1ProjectsProjectIdIntegrations: v1ProjectsProjectIdIntegrations ?? this.v1ProjectsProjectIdIntegrations,
-            v1ProjectsProjectIdIntegrationsValidate: v1ProjectsProjectIdIntegrationsValidate ?? this.v1ProjectsProjectIdIntegrationsValidate,
-            v1ProjectsProjectIdIntegrationsIntegrationId: v1ProjectsProjectIdIntegrationsIntegrationId ?? this.v1ProjectsProjectIdIntegrationsIntegrationId,
-            v1ProjectsProjectIdIntegrationsIntegrationIdTest: v1ProjectsProjectIdIntegrationsIntegrationIdTest ?? this.v1ProjectsProjectIdIntegrationsIntegrationIdTest,
-            v1ProjectsProjectIdLogs: v1ProjectsProjectIdLogs ?? this.v1ProjectsProjectIdLogs,
-            v1ProjectsProjectIdMoveOrganizationId: v1ProjectsProjectIdMoveOrganizationId ?? this.v1ProjectsProjectIdMoveOrganizationId,
-            v1ProjectsProjectIdPermissions: v1ProjectsProjectIdPermissions ?? this.v1ProjectsProjectIdPermissions,
-            v1ProjectsProjectIdPolicies: v1ProjectsProjectIdPolicies ?? this.v1ProjectsProjectIdPolicies,
-            v1ProjectsProjectIdPoliciesPolicyId: v1ProjectsProjectIdPoliciesPolicyId ?? this.v1ProjectsProjectIdPoliciesPolicyId,
-            v1ProjectsProjectIdProvisioning: v1ProjectsProjectIdProvisioning ?? this.v1ProjectsProjectIdProvisioning,
-            v1ProjectsProjectIdReleases: v1ProjectsProjectIdReleases ?? this.v1ProjectsProjectIdReleases,
-            v1ProjectsProjectIdReleasesReleaseId: v1ProjectsProjectIdReleasesReleaseId ?? this.v1ProjectsProjectIdReleasesReleaseId,
-            v1ProjectsProjectIdSettings: v1ProjectsProjectIdSettings ?? this.v1ProjectsProjectIdSettings,
-            v1ProjectsProjectIdSettingsSettingId: v1ProjectsProjectIdSettingsSettingId ?? this.v1ProjectsProjectIdSettingsSettingId,
-            v1ProjectsProjectIdStream: v1ProjectsProjectIdStream ?? this.v1ProjectsProjectIdStream,
-            v1ProjectsProjectIdTags: v1ProjectsProjectIdTags ?? this.v1ProjectsProjectIdTags,
-            v1ProjectsProjectIdTagsTagId: v1ProjectsProjectIdTagsTagId ?? this.v1ProjectsProjectIdTagsTagId,
-            v1ProjectsProjectIdUsers: v1ProjectsProjectIdUsers ?? this.v1ProjectsProjectIdUsers,
-            v1ProjectsProjectIdUsersInvitation: v1ProjectsProjectIdUsersInvitation ?? this.v1ProjectsProjectIdUsersInvitation,
-            v1Quotas: v1Quotas ?? this.v1Quotas,
-            v1Roles: v1Roles ?? this.v1Roles,
-            v1SettingsDataTypes: v1SettingsDataTypes ?? this.v1SettingsDataTypes,
-        );
-
     factory Paths.fromJson(Map<String, dynamic> json) => Paths(
         v1Artifacts: V1ArtifactsClass.fromJson(json["/v1/artifacts"]),
         v1BillingPlans: V1BillingPlansClass.fromJson(json["/v1/billing/plans"]),
@@ -7496,13 +5126,6 @@ class V1ArtifactsClass {
         required this.post,
     });
 
-    V1ArtifactsClass copyWith({
-        Post? post,
-    }) => 
-        V1ArtifactsClass(
-            post: post ?? this.post,
-        );
-
     factory V1ArtifactsClass.fromJson(Map<String, dynamic> json) => V1ArtifactsClass(
         post: Post.fromJson(json["post"]),
     );
@@ -7524,19 +5147,6 @@ class Post {
         this.parameters,
         required this.tags,
     });
-
-    Post copyWith({
-        String? operationId,
-        Responses? responses,
-        List<Parameter>? parameters,
-        List<String>? tags,
-    }) => 
-        Post(
-            operationId: operationId ?? this.operationId,
-            responses: responses ?? this.responses,
-            parameters: parameters ?? this.parameters,
-            tags: tags ?? this.tags,
-        );
 
     factory Post.fromJson(Map<String, dynamic> json) => Post(
         operationId: json["operationId"],
@@ -7579,33 +5189,6 @@ class Parameter {
         this.parameterEnum,
         this.parameterDefault,
     });
-
-    Parameter copyWith({
-        String? name,
-        String? description,
-        In? parameterIn,
-        bool? required,
-        Schema? schema,
-        CreatedAtType? type,
-        Format? format,
-        GoliothArtifactUpdate? items,
-        CollectionFormat? collectionFormat,
-        List<String>? parameterEnum,
-        String? parameterDefault,
-    }) => 
-        Parameter(
-            name: name ?? this.name,
-            description: description ?? this.description,
-            parameterIn: parameterIn ?? this.parameterIn,
-            required: required ?? this.required,
-            schema: schema ?? this.schema,
-            type: type ?? this.type,
-            format: format ?? this.format,
-            items: items ?? this.items,
-            collectionFormat: collectionFormat ?? this.collectionFormat,
-            parameterEnum: parameterEnum ?? this.parameterEnum,
-            parameterDefault: parameterDefault ?? this.parameterDefault,
-        );
 
     factory Parameter.fromJson(Map<String, dynamic> json) => Parameter(
         name: json["name"],
@@ -7669,17 +5252,6 @@ class Schema {
         this.format,
     });
 
-    Schema copyWith({
-        String? ref,
-        GoliothArtifactUpdateType? type,
-        Format? format,
-    }) => 
-        Schema(
-            ref: ref ?? this.ref,
-            type: type ?? this.type,
-            format: format ?? this.format,
-        );
-
     factory Schema.fromJson(Map<String, dynamic> json) => Schema(
         ref: json["\u0024ref"],
         type: goliothArtifactUpdateTypeValues.map[json["type"]]!,
@@ -7702,15 +5274,6 @@ class Responses {
         required this.responsesDefault,
     });
 
-    Responses copyWith({
-        The200? the200,
-        The200? responsesDefault,
-    }) => 
-        Responses(
-            the200: the200 ?? this.the200,
-            responsesDefault: responsesDefault ?? this.responsesDefault,
-        );
-
     factory Responses.fromJson(Map<String, dynamic> json) => Responses(
         the200: The200.fromJson(json["200"]),
         responsesDefault: The200.fromJson(json["default"]),
@@ -7730,15 +5293,6 @@ class The200 {
         required this.description,
         required this.schema,
     });
-
-    The200 copyWith({
-        Description? description,
-        TypeClass? schema,
-    }) => 
-        The200(
-            description: description ?? this.description,
-            schema: schema ?? this.schema,
-        );
 
     factory The200.fromJson(Map<String, dynamic> json) => The200(
         description: descriptionValues.map[json["description"]]!,
@@ -7768,13 +5322,6 @@ class V1BillingPlansClass {
         required this.v1Get,
     });
 
-    V1BillingPlansClass copyWith({
-        Post? v1Get,
-    }) => 
-        V1BillingPlansClass(
-            v1Get: v1Get ?? this.v1Get,
-        );
-
     factory V1BillingPlansClass.fromJson(Map<String, dynamic> json) => V1BillingPlansClass(
         v1Get: Post.fromJson(json["get"]),
     );
@@ -7792,15 +5339,6 @@ class V1OrganizationsClass {
         required this.v1Get,
         required this.post,
     });
-
-    V1OrganizationsClass copyWith({
-        Post? v1Get,
-        Post? post,
-    }) => 
-        V1OrganizationsClass(
-            v1Get: v1Get ?? this.v1Get,
-            post: post ?? this.post,
-        );
 
     factory V1OrganizationsClass.fromJson(Map<String, dynamic> json) => V1OrganizationsClass(
         v1Get: Post.fromJson(json["get"]),
@@ -7826,19 +5364,6 @@ class V1Id {
         this.delete,
     });
 
-    V1Id copyWith({
-        Post? v1IdGet,
-        Post? put,
-        Post? patch,
-        Post? delete,
-    }) => 
-        V1Id(
-            v1IdGet: v1IdGet ?? this.v1IdGet,
-            put: put ?? this.put,
-            patch: patch ?? this.patch,
-            delete: delete ?? this.delete,
-        );
-
     factory V1Id.fromJson(Map<String, dynamic> json) => V1Id(
         v1IdGet: json["get"] == null ? null : Post.fromJson(json["get"]),
         put: Post.fromJson(json["put"]),
@@ -7863,15 +5388,6 @@ class V1ProjectsProjectIdApikeysApikeyId {
         required this.patch,
     });
 
-    V1ProjectsProjectIdApikeysApikeyId copyWith({
-        Post? delete,
-        Post? patch,
-    }) => 
-        V1ProjectsProjectIdApikeysApikeyId(
-            delete: delete ?? this.delete,
-            patch: patch ?? this.patch,
-        );
-
     factory V1ProjectsProjectIdApikeysApikeyId.fromJson(Map<String, dynamic> json) => V1ProjectsProjectIdApikeysApikeyId(
         delete: Post.fromJson(json["delete"]),
         patch: Post.fromJson(json["patch"]),
@@ -7892,15 +5408,6 @@ class V1ProjectsProjectIdCertificatesCertificateId {
         required this.delete,
     });
 
-    V1ProjectsProjectIdCertificatesCertificateId copyWith({
-        Post? v1ProjectsProjectIdCertificatesCertificateIdGet,
-        Post? delete,
-    }) => 
-        V1ProjectsProjectIdCertificatesCertificateId(
-            v1ProjectsProjectIdCertificatesCertificateIdGet: v1ProjectsProjectIdCertificatesCertificateIdGet ?? this.v1ProjectsProjectIdCertificatesCertificateIdGet,
-            delete: delete ?? this.delete,
-        );
-
     factory V1ProjectsProjectIdCertificatesCertificateId.fromJson(Map<String, dynamic> json) => V1ProjectsProjectIdCertificatesCertificateId(
         v1ProjectsProjectIdCertificatesCertificateIdGet: Post.fromJson(json["get"]),
         delete: Post.fromJson(json["delete"]),
@@ -7918,13 +5425,6 @@ class V1ProjectsProjectIdIdCredentialsCredentialId {
     V1ProjectsProjectIdIdCredentialsCredentialId({
         required this.delete,
     });
-
-    V1ProjectsProjectIdIdCredentialsCredentialId copyWith({
-        Post? delete,
-    }) => 
-        V1ProjectsProjectIdIdCredentialsCredentialId(
-            delete: delete ?? this.delete,
-        );
 
     factory V1ProjectsProjectIdIdCredentialsCredentialId.fromJson(Map<String, dynamic> json) => V1ProjectsProjectIdIdCredentialsCredentialId(
         delete: Post.fromJson(json["delete"]),
@@ -7949,21 +5449,6 @@ class V1ProjectsProjectIdDevicesDataPath {
         required this.put,
         required this.patch,
     });
-
-    V1ProjectsProjectIdDevicesDataPath copyWith({
-        Post? v1ProjectsProjectIdDevicesDataPathGet,
-        Post? delete,
-        Post? post,
-        Post? put,
-        Post? patch,
-    }) => 
-        V1ProjectsProjectIdDevicesDataPath(
-            v1ProjectsProjectIdDevicesDataPathGet: v1ProjectsProjectIdDevicesDataPathGet ?? this.v1ProjectsProjectIdDevicesDataPathGet,
-            delete: delete ?? this.delete,
-            post: post ?? this.post,
-            put: put ?? this.put,
-            patch: patch ?? this.patch,
-        );
 
     factory V1ProjectsProjectIdDevicesDataPath.fromJson(Map<String, dynamic> json) => V1ProjectsProjectIdDevicesDataPath(
         v1ProjectsProjectIdDevicesDataPathGet: json["get"] == null ? null : Post.fromJson(json["get"]),
@@ -7991,15 +5476,6 @@ class V1ProjectsProjectIdMoveOrganizationId {
         required this.patch,
     });
 
-    V1ProjectsProjectIdMoveOrganizationId copyWith({
-        Post? put,
-        Post? patch,
-    }) => 
-        V1ProjectsProjectIdMoveOrganizationId(
-            put: put ?? this.put,
-            patch: patch ?? this.patch,
-        );
-
     factory V1ProjectsProjectIdMoveOrganizationId.fromJson(Map<String, dynamic> json) => V1ProjectsProjectIdMoveOrganizationId(
         put: Post.fromJson(json["put"]),
         patch: Post.fromJson(json["patch"]),
@@ -8020,15 +5496,6 @@ class Security {
         required this.bearer,
     });
 
-    Security copyWith({
-        List<dynamic>? apiKey,
-        List<dynamic>? bearer,
-    }) => 
-        Security(
-            apiKey: apiKey ?? this.apiKey,
-            bearer: bearer ?? this.bearer,
-        );
-
     factory Security.fromJson(Map<String, dynamic> json) => Security(
         apiKey: List<dynamic>.from(json["API Key"].map((x) => x)),
         bearer: List<dynamic>.from(json["Bearer"].map((x) => x)),
@@ -8048,15 +5515,6 @@ class SecurityDefinitions {
         required this.apiKey,
         required this.bearer,
     });
-
-    SecurityDefinitions copyWith({
-        ApiKey? apiKey,
-        ApiKey? bearer,
-    }) => 
-        SecurityDefinitions(
-            apiKey: apiKey ?? this.apiKey,
-            bearer: bearer ?? this.bearer,
-        );
 
     factory SecurityDefinitions.fromJson(Map<String, dynamic> json) => SecurityDefinitions(
         apiKey: ApiKey.fromJson(json["API Key"]),
@@ -8085,23 +5543,6 @@ class ApiKey {
         this.type,
         this.format,
     });
-
-    ApiKey copyWith({
-        String? name,
-        In? apiKeyIn,
-        bool? required,
-        Schema? schema,
-        ApiKeyType? type,
-        Format? format,
-    }) => 
-        ApiKey(
-            name: name ?? this.name,
-            apiKeyIn: apiKeyIn ?? this.apiKeyIn,
-            required: required ?? this.required,
-            schema: schema ?? this.schema,
-            type: type ?? this.type,
-            format: format ?? this.format,
-        );
 
     factory ApiKey.fromJson(Map<String, dynamic> json) => ApiKey(
         name: json["name"],
@@ -8140,13 +5581,6 @@ class Tag {
     Tag({
         required this.name,
     });
-
-    Tag copyWith({
-        String? name,
-    }) => 
-        Tag(
-            name: name ?? this.name,
-        );
 
     factory Tag.fromJson(Map<String, dynamic> json) => Tag(
         name: json["name"],
